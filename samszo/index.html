@@ -111,6 +111,9 @@
         <div class="modal-body" id="modalEtuBody" >
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
+                    <a class="nav-link" id="ex1-tab" data-toggle="tab" href="#ex1" role="tab" aria-controls="ex1" aria-selected="false">Exercice 1</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="sitePerso-tab" data-toggle="tab" href="#sitePerso" role="tab" aria-controls="sitePerso" aria-selected="false">Modele SVG</a>
                 </li>
                 <li class="nav-item">
@@ -124,6 +127,7 @@
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade" id="ex1" role="tabpanel" aria-labelledby="ex1-tab">...</div>
                 <div class="tab-pane fade" id="diigoTags" role="tabpanel" aria-labelledby="diigoTags-tab">...</div>
                 <div class="tab-pane fade" id="sitePerso" role="tabpanel" aria-labelledby="sitePerso-tab">...</div>
                 <div class="tab-pane fade" id="veilleRecap" role="tabpanel" aria-labelledby="veilleRecap-tab"></div>
@@ -358,13 +362,13 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
                 .text(function(d) { 
                     return 'Projet : '+d['Projet']; 
                         });
+            */
             cardBody.append('h6').text("plus d'infos...")
                 .on("click",function(e){
                             console.log(e);
                             selectEtu = e;
                             $('#infosEtu').modal('show');
                         });
-            */
 
             //construction du layout pour les graphiques
             html = '<div class="container"><div class="row">';
@@ -714,22 +718,14 @@ $('#infosEtu').on('show.bs.modal', function (e) {
     htm = '<p><a href="'+url+'">'+url+'</a></p>';
     htm += '<iframe id="ifSitePerso" title="Modèle SVG" src="'+url+'"></iframe>';
     d3.select('#sitePerso').html(htm);
+
+    //affiche l'exercice 1
+    var url = "../"+selectEtu['Votre compte GitHub']+"/ex1/";
+    var htm = '<p><a href="'+url+'">'+url+'</a></p>';
+    htm += '<iframe id="ifEx1Etu" title="Diigo étudiant" src="'+url+'"></iframe>';
+    d3.select('#ex1').html(htm);
+     
  
-    /*selectEtu['Votre compte Diigo']
-    ht= '<div class="diigo-tags">';
-    ht += '<div class="diigo-banner sidebar-title" style="font: bold 12px arial;margin-bottom:5px;">';
-    ht += '<a href="https://www.diigo.com">';
-    ht += '<img src="https://www.diigo.com/images/ii_blue.gif" width="16" height="16" alt="diigo"/>';
-    ht += '</a>';
-    ht += '<a href="https://www.diigo.com/cloud/luckysemiosis">';
-    ht += 'My Diigo Tags';
-    ht += '</a></div>';
-    //d3.select('#modalEtuBody').html(ht);
-	d3.html("diigo.php", function(html) {
-        //d3.select('#modalEtuBody').append(html);
-        document.getElementById('modalEtuBody').appendChild(html);
-    });
-    */
 })
 //l'événement de fin d'ouverture
 $('#infosEtu').on('shown.bs.modal', function (e) {
