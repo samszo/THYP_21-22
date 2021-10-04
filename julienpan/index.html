@@ -38,7 +38,9 @@
         <div class="row" id="etuGraph">
             
         </div>
-        <svg width="600" height="500"></svg>
+        <div class="myGraph">
+            <svg width="600" height="500"></svg>
+        </div>
     </div>
 
     <script>
@@ -140,18 +142,13 @@
                 .attr('id', function (d, i) { return 'imgCard' + i })
                 .attr('class', 'card-img-top')
                 .attr('src', function (d) {
-                    //merci à https://davidwalsh.name/query-string-javascript
-                    // https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en
                     let url = new URL(d['Votre photo']);
                     let urlParam = new URLSearchParams(url.search);
                     let id = urlParam.get('id');
-                    //merci à https://stackoverflow.com/questions/50664868/get-pictures-from-google-drive-folder-with-javascript-to-my-website
                     let urlTof = "https://drive.google.com/uc?id=" + id + "&export=download";
                     return urlTof;
                 });
 
-
-            //ajoute le corps de la carte
             var cardBody = cards.append('div').attr('class', 'card-body');
             cardBody.append('h4').attr('class', 'card-title')
                 .text(function (d) {
@@ -174,7 +171,6 @@
             cards.append('div').attr('class', 'card-footer')
                 .append('small').attr('class', 'text-muted')
                 .text(function (d, i) {
-                    //charge le graph des réponses
                     var size = 200;
                     drawGraphResponse("#etudNum_" + i + "_Col1", 'Besoins', d.reponses.besoins, size);
                     drawGraphResponse("#etudNum_" + i + "_Col2", 'Compétences', d.reponses.competences, size);
@@ -189,14 +185,14 @@
             let etuGraph = etuChart()
                 .width(size)
                 .height(size)
-                .cornerRadius(0) // sets how rounded the corners are on each slice
-                .padAngle(0) // effectively dictates the gap between slices
+                .cornerRadius(0)
+                .padAngle(0)
                 .variable('importance')
                 .category('prop')
                 .title(titre);
             let s = d3.select(idE)
-                .datum(data) // bind data to the div
-                .call(etuGraph); // draw chart in div
+                .datum(data)
+                .call(etuGraph);
             console.log(idE + " graph fait");
         }
 
@@ -235,17 +231,6 @@
                         .append("g")
                         .attr("class", "arc")
 
-                    // var arc = d3.arc()
-                    //     .outerRadius(radius)
-                    //     .innerRadius(radius)
-                    //     .cornerRadius(cornerRadius)
-                    //     .padAngle(padAngle);
-
-                    // this arc is used for aligning the text labels
-                    // var outerArc = d3.arc()
-                    //     .outerRadius(radius)
-                    //     .innerRadius(radius);
-
 
                     var wSvg = width + margin.left + margin.right, hSvg = height + margin.top + margin.bottom;
                     var svg = selection.append('svg')
@@ -254,12 +239,10 @@
                         .append('g')
                         .attr('transform', 'translate(' + wSvg / 2 + ',' + hSvg / 2 + ')');
                     // ===========================================================================================
-                    // g elements to keep elements within svg modular
                     svg.append('g').attr('class', 'slices');
                     svg.append('g').attr('class', 'labelName');
                     svg.append('g').attr('class', 'lines');
 
-                    // add and colour the donut slices
                     var path = svg.select('.slices')
                         .datum(data).selectAll('path')
                         .data(pie)
@@ -270,7 +253,6 @@
                         })
                         .attr('d', arc);
 
-                    //ajoute le titre
                     svg.append('text')
                         .html(title)
                         .attr('text-anchor', 'middle')
@@ -278,7 +260,6 @@
                 });
             }
 
-            // getter and setter functions. See Mike Bostocks post "Towards Reusable Charts" for a tutorial on how this works.
             chart.width = function (value) {
                 if (!arguments.length) return width;
                 width = value;
