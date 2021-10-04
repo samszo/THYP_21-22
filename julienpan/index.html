@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humanité numérique 2021-2022</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /*pour les initiales en majuscule*/
         .card-title:first-letter {
             text-transform: uppercase;
         }
@@ -38,9 +40,7 @@
         <div class="row" id="etuGraph">
             
         </div>
-        <div class="myGraph">
-            <svg width="600" height="500"></svg>
-        </div>
+        <svg width="600" height="500"></svg>
     </div>
 
     <script>
@@ -91,12 +91,10 @@
             dataForm = data[0];
             let dataEtu = [];
 
-            //réorganise les datas
             dataForm.forEach(function (d, j) {
                 d.reponses = { 'besoins': [], 'competences': [], 'outils': [] };
                 for (let i in d) {
 
-                    //compilation des facettes
                     let quest = i.indexOf("[") > 0 ? vals[i.substring(0, i.indexOf("[") - 1)] : vals[i];
                     let prop = i.substring(i.indexOf("[") + 1, i.indexOf("]"));
                     let v = d[i];
@@ -123,7 +121,6 @@
                     }
                     if (i.indexOf("besoins") > 0) {
                         d.reponses.besoins.push({ 'prop': prop, 'importance': n, 'expression': v, 'id': j });
-                        //d.reponses.push({'besoins':prop,'val':n,'lib':v});
                     }
                     if (i.indexOf("compétences") > 0) {
                         d.reponses.competences.push({ 'prop': prop, 'importance': n, 'expression': v, 'id': j });
@@ -149,6 +146,8 @@
                     return urlTof;
                 });
 
+
+    
             var cardBody = cards.append('div').attr('class', 'card-body');
             cardBody.append('h4').attr('class', 'card-title')
                 .text(function (d) {
@@ -160,7 +159,7 @@
                 });
             cardBody.append('h6').text(d => d['Dans quel parcours êtes vous inscris ?']);
 
-            //construction du layout pour les graphiques
+
             html = '<div class="container"><div class="row">';
             html += '<div id="etudNum__Col1" class="col-sm" style="padding-right:0px;padding-left:0px;"></div>';
             html += '<div id="etudNum__Col2" class="col-sm" style="padding-right:0px;padding-left:0px;"></div>';
@@ -171,6 +170,7 @@
             cards.append('div').attr('class', 'card-footer')
                 .append('small').attr('class', 'text-muted')
                 .text(function (d, i) {
+
                     var size = 200;
                     drawGraphResponse("#etudNum_" + i + "_Col1", 'Besoins', d.reponses.besoins, size);
                     drawGraphResponse("#etudNum_" + i + "_Col2", 'Compétences', d.reponses.competences, size);
@@ -212,24 +212,55 @@
             function chart(selection) {
                 selection.each(function (data) {
 
+
+                    // var radius = Math.min(width, height) / 2;
+
+                    // // var pie = d3.pie().value(function (d) {
+                    // //     return floatFormat(d[variable]);
+                    // // })
+                    // //     .sort(null);
+
+                    // var pie = d3.pie();
+
+                    // var arc = d3.arc()
+                    //     .innerRadius(0)
+                    //     .outerRadius(radius);
+
+                    // var arcs = g.selectAll("arc")
+                    //     .data(pie(data))
+                    //     .enter()
+                    //     .append("g")
+                    //     .attr("class", "arc")
+
+                    // var arc = d3.arc()
+                    //     .outerRadius(radius)
+                    //     .innerRadius(radius)
+                    //     .cornerRadius(cornerRadius)
+                    //     .padAngle(padAngle);
+
+                    // this arc is used for aligning the text labels
+                    // var outerArc = d3.arc()
+                    //     .outerRadius(radius)
+                    //     .innerRadius(radius);
+
                     var radius = Math.min(width, height) / 2;
 
-                    // var pie = d3.pie().value(function (d) {
-                    //     return floatFormat(d[variable]);
-                    // })
-                    //     .sort(null);
+                
+                        var pie = d3.pie()
+                            .value(function (d) { return floatFormat(d[variable]); })
+                            .sort(null);
 
-                    var pie = d3.pie();
 
-                    var arc = d3.arc()
-                        .innerRadius(0)
-                        .outerRadius(radius);
 
-                    var arcs = g.selectAll("arc")
-                        .data(pie(data))
-                        .enter()
-                        .append("g")
-                        .attr("class", "arc")
+                        var arc = d3.arc()
+                            .outerRadius(radius * 0.8)
+                            .innerRadius(radius * 0.6)
+                            .cornerRadius(cornerRadius)
+                            .padAngle(padAngle);
+
+                        var outerArc = d3.arc()
+                            .outerRadius(radius * 0.9)
+                            .innerRadius(radius * 0.9);
 
 
                     var wSvg = width + margin.left + margin.right, hSvg = height + margin.top + margin.bottom;
@@ -239,6 +270,7 @@
                         .append('g')
                         .attr('transform', 'translate(' + wSvg / 2 + ',' + hSvg / 2 + ')');
                     // ===========================================================================================
+
                     svg.append('g').attr('class', 'slices');
                     svg.append('g').attr('class', 'labelName');
                     svg.append('g').attr('class', 'lines');
