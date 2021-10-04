@@ -2,9 +2,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>THYP : trombinoscope de la promotion 2021 - 2022</title>
+		<title>Mention Humanités Numériques : trombinoscope de la promotion 2020 - 2021</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		
+
 	    <!-- Bootstrap CSS -->
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		<script src="https://d3js.org/d3.v4.min.js"></script>
@@ -15,19 +15,19 @@
 		.card-title:first-letter{
 			text-transform: uppercase;
         }
-        
+
 		/*pour le donuts merci à https://bl.ocks.org/mbhall88/b2504f8f3e384de4ff2b9dfa60f325e2 */
 		polyline{
 		    opacity: .3;
 		    stroke: black;
 		    stroke-width: 2px;
 		    fill: none;
-		}		
+		}
 		/* Make the percentage on the text labels bold*/
 		.labelName tspan {
 		    font-style: normal;
 		    font-weight: 700;
-		}		
+		}
 		/* In biology we generally italicise species names. */
 		.labelName {
 		    font-size: 0.9em;
@@ -41,7 +41,7 @@
 
         .modal-full .modal-content {
             min-height: 100vh;
-        }		
+        }
         .tab-pane{
             height: 100%;
         }
@@ -83,8 +83,8 @@
 <body>
 
 <div class="jumbotron">
-  <h1 class="display-3">THYP</h1>
-  <h2>Promotion  2021 - 2022</h2>
+  <h1 class="display-3">Mention Humanités Numériques</h1>
+  <h2>Promotion  2020 - 2021</h2>
   <hr class="my-4">
 
   <ul class="nav nav-tabs" id="tabFacet" role="tablist">
@@ -95,51 +95,9 @@
 </div>
 
 
-    <div class="container">    
+    <div class="container">
 		<div class="row" id="etuCards" >
         </div>
-        
-<div class="modal fade" id="infosEtu" tabindex="-1" role="dialog" aria-labelledby="modalEtuTitle" aria-hidden="true">
-    <div class="modal-dialog modal-full" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalEtuTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="modalEtuBody" >
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link" id="ex1-tab" data-toggle="tab" href="#ex1" role="tab" aria-controls="ex1" aria-selected="false">Exercice 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="sitePerso-tab" data-toggle="tab" href="#sitePerso" role="tab" aria-controls="sitePerso" aria-selected="false">Modele SVG</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="diigoTags-tab" data-toggle="tab" href="#diigoTags" role="tab" aria-controls="diigoTags" aria-selected="true">Diigo Tags</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="veilleRecap-tab" data-toggle="tab" href="#veilleRecap" role="tab" aria-controls="veilleRecap" aria-selected="false">Veilles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="rssFlux-tab" data-toggle="tab" href="#rssFlux" role="tab" aria-controls="rssFlux" aria-selected="false">Flux RSS</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade" id="ex1" role="tabpanel" aria-labelledby="ex1-tab">...</div>
-                <div class="tab-pane fade" id="diigoTags" role="tabpanel" aria-labelledby="diigoTags-tab">...</div>
-                <div class="tab-pane fade" id="sitePerso" role="tabpanel" aria-labelledby="sitePerso-tab">...</div>
-                <div class="tab-pane fade" id="veilleRecap" role="tabpanel" aria-labelledby="veilleRecap-tab"></div>
-                <div class="tab-pane fade" id="rssFlux" role="tabpanel" aria-labelledby="rssFlux-tab"></div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div>
 
@@ -152,16 +110,16 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
         ,"jamais":1,"rarement":2,"souvent":5,"je suis accro":10
         ,"Dans quel parcours êtes vous inscris ?":"Parcours"
         ,"Avez-vous un ordinateur personnel pour suivre les cours ?":"Ordinateur"
-        ,"Votre connexion internet personnelle est :":"Connexion"        
+        ,"Votre connexion internet personnelle est :":"Connexion"
         ,"Votre compte GitHub":"Compte"
         ,"Votre compte Diigo":"Compte"
         ,"Votre compte Zotero":"Compte"
         ,"Vos spécialités":"Spécialités"
         ,"Vos spécialités":"Objectifs"
         ,"Votre formation précédente":"Formation"
-        ,"Quelles sont besoins ?":"Besoins"        
-        ,"Quelles sont vos compétences ?":"Compétences"        
-        ,"Quelles outils utilisez vous ?":"Outils"        
+        ,"Quelles sont besoins ?":"Besoins"
+        ,"Quelles sont vos compétences ?":"Compétences"
+        ,"Quelles outils utilisez vous ?":"Outils"
         ,"Langages":"Langages"
         ,"Langues":"Langues"
         ,"CMS":"CMS"
@@ -172,8 +130,8 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
 
     //récupération des données des formulaires google
     //"FormulaireGEN19.csv";//
-    let url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv';
-    //let url = 'data.csv';            
+   // let url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv';
+    let url = 'data.csv';
     var q = d3.queue()
         .defer(d3.csv, url)
         //.defer(d3.csv, url1)
@@ -188,21 +146,21 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
     function setData(data){
 
             dataForm = data[0];
-            let dataEtu = []; 
-            
+            let dataEtu = [];
+
 
             //réorganise les datas
             dataForm.forEach(function(d, j){
                 d.reponses = {'besoins':[],'competences':[],'outils':[]};
                 for (let i in d) {
                     //compilation des facettes
-                    let quest = i.indexOf("[") > 0 ? vals[i.substring(0, i.indexOf("[")-1)] : vals[i]; 
-                    let prop = i.substring(i.indexOf("[")+1,i.indexOf("]")); 
+                    let quest = i.indexOf("[") > 0 ? vals[i.substring(0, i.indexOf("[")-1)] : vals[i];
+                    let prop = i.substring(i.indexOf("[")+1,i.indexOf("]"));
                     let v = d[i];
                     let n = vals[v];
                     if(quest){
                         if(dataDoublons[quest] === undefined){
-                            dataDoublons[quest]=dataFacet.length; 
+                            dataDoublons[quest]=dataFacet.length;
                             dataFacet.push({'label':quest,'values':[]});
                         }
                         let rep = prop ? prop : v;
@@ -215,10 +173,10 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
                                 ,'expression':v
                                 ,'ids':[]
                             });
-                        }                        
+                        }
                         dataFacet[dataDoublons[quest]]['values'][dataDoublons[kRep]]['ids'].push(j);
                         dataFacet[dataDoublons[quest]]['values'][dataDoublons[kRep]]['importance'] += n ? n : 1;
-                        
+
                     }
                     if(i.indexOf("besoins")>0){
                         d.reponses.besoins.push({'prop':prop,'importance':n,'expression':v,'id':j});
@@ -229,11 +187,11 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
                     }
                     if(i.indexOf("outils utilisez")>0){
                         d.reponses.outils.push({'prop':prop,'importance':n,'expression':v,'id':j});
-                    }							
+                    }
                 }
-            });	
-            
-            
+            });
+
+
             //ajoute les tab de filtres
             var arrFacet = d3.select("#tabFacet")
                 .selectAll("li")
@@ -259,7 +217,7 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
                 .attr('href',function(d,i){
                     return "#tabFacetContent"+i
                 })
-                .text(d => d.label);		
+                .text(d => d.label);
 
             //ajoute les content de filtres
             let html = '<div class="container"><div class="row">';
@@ -280,29 +238,29 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
                 .attr('aria-labelledby',function(d,i){
                     return "tabFacet"+i
                 })
-                .html(function(d, i) { return html.replace(/__/gi, "_"+i+"_");});	  			
+                .html(function(d, i) { return html.replace(/__/gi, "_"+i+"_");});
             //Ajoute les diagrammes de filtre
             arrFacet.append('div').attr('id',function(d,i){
                     return "tabFacetContentDiag"+i
                 })
                 .text((d,i) => {
                     drawGraphReponse("#tabFacetContent_"+i+"_Col1", d.label, d.values, 100);
-                });		
-            
+                });
+
 
             /*construction simple
             var arrDiv = d3.select("#container")
                 .selectAll("div")
                 .data(data)
                 .enter().append("div")
-                .text(function(d) { 
-                        return d['Votre prénom'].toLowerCase() + ' ' + d['Votre nom'].toLowerCase(); 
-                    });		
+                .text(function(d) {
+                        return d['Votre prénom'].toLowerCase() + ' ' + d['Votre nom'].toLowerCase();
+                    });
             arrDiv.append("img")
-                .attr('src',function(d) { 
+                .attr('src',function(d) {
                         var item = dataPhoto.photoset.photo[d['N° photo']];
                     var src = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_s.jpg';
-                        return src; 
+                        return src;
                     });
             */
 
@@ -324,15 +282,15 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
             cards.append("img")
                     .attr('id',function(d, i) {return 'imgCard'+i})
                     .attr('class','card-img-top')
-                    .attr('src',function(d) { 
+                    .attr('src',function(d) {
                         //merci à https://davidwalsh.name/query-string-javascript
                         // https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en
                         let url = new URL(d['Votre photo']);
                         let urlParam = new URLSearchParams(url.search);
                         let id = urlParam.get('id');
                         //merci à https://stackoverflow.com/questions/50664868/get-pictures-from-google-drive-folder-with-javascript-to-my-website
-                        let urlTof = "https://drive.google.com/uc?id="+id+"&export=download";                        
-                        return urlTof; 
+                        let urlTof = "https://drive.google.com/uc?id="+id+"&export=download";
+                        return urlTof;
                         });
             /*ATTENTION problème quand les images ne sont pas à la même taille
             ajoute l'overlay sur l'image pour le tooltip du diagramme
@@ -348,27 +306,27 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
 
             //ajoute le corps de la carte
             var cardBody = cards.append('div').attr('class','card-body');
-            cardBody.append('h4').attr('class','card-title')	  			
-                        .text(function(d) { 
-                            return d['Votre prénom'].toLowerCase(); 
+            cardBody.append('h4').attr('class','card-title')
+                        .text(function(d) {
+                            return d['Votre prénom'].toLowerCase();
                                 });
-            cardBody.append('h5').attr('class','card-title')	  			
-                .text(function(d) { 
-                    return d['Votre nom'].toLowerCase(); 
+            cardBody.append('h5').attr('class','card-title')
+                .text(function(d) {
+                    return d['Votre nom'].toLowerCase();
                         });
             cardBody.append('h6').text(d => d['Dans quel parcours êtes vous inscris ?']);
             /*
-            cardBody.append('h5').attr('class','card-title')	  			
-                .text(function(d) { 
-                    return 'Projet : '+d['Projet']; 
+            cardBody.append('h5').attr('class','card-title')
+                .text(function(d) {
+                    return 'Projet : '+d['Projet'];
                         });
-            */
             cardBody.append('h6').text("plus d'infos...")
                 .on("click",function(e){
                             console.log(e);
                             selectEtu = e;
                             $('#infosEtu').modal('show');
                         });
+            */
 
             //construction du layout pour les graphiques
             html = '<div class="container"><div class="row">';
@@ -377,7 +335,7 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
             html += '<div id="etudNum__Col3" class="col-sm" style="padding-right:0px;padding-left:0px;"></div>';
             html += '</div></div>';
             cardBody.append('div').attr('class','card-text').attr('id',function(d, i) { return 'etudNum_'+i; })
-                .html(function(d, i) { return html.replace(/__/gi, "_"+i+"_");});	  			
+                .html(function(d, i) { return html.replace(/__/gi, "_"+i+"_");});
             cards.append('div').attr('class','card-footer')
                 .append('small').attr('class','text-muted')
                 .text(function(d, i) {
@@ -386,31 +344,14 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
                         drawGraphReponse("#etudNum_"+i+"_Col1", 'Besoins', d.reponses.besoins, size);
                         drawGraphReponse("#etudNum_"+i+"_Col2", 'Compétences', d.reponses.competences, size);
                         drawGraphReponse("#etudNum_"+i+"_Col3", 'Outils', d.reponses.outils, size);
-                return d['Votre mail'].toLowerCase(); 
+                return d['Votre mail'].toLowerCase();
                     });
 
 }
 
 
 function drawGraphReponse(idE, titre, data, size){
-	/*à voir si dimple marche mieux
-    var svg = dimple.newSvg("#"+idE, 200, 200);
-    var myChart = new dimple.chart(svg, data);
-    myChart.setBounds(6, 6, 184, 184)
-    myChart.addMeasureAxis("p", "val");
-    var outerRing = myChart.addSeries("besoins", dimple.plot.pie);
-    var innerRing = myChart.addSeries("compétences", dimple.plot.pie);
-    var centerRing = myChart.addSeries("outils", dimple.plot.pie);
-    // Negatives are calculated from outside edge, positives from center
-    outerRing.innerRadius = "-10px";
-    innerRing.outerRadius = "-20px";
-    innerRing.innerRadius = "-30px";
-    centerRing.outerRadius = "-40px";
-    centerRing.innerRadius = "-50px";
-    //myChart.addLegend(500, 20, 90, 300, "left");
-    myChart.draw();
-    */
-    //
+
 	let donut = donutChart()
 	    .width(size)
 	    .height(size)
@@ -465,17 +406,17 @@ function donutChart() {
                 .outerRadius(radius * 0.9)
                 .innerRadius(radius * 0.9);
 
-                
+
             // ===========================================================================================
 
             // ===========================================================================================
             // append the svg object to the selection
-            var wSvg = width + margin.left + margin.right, hSvg = height + margin.top + margin.bottom; 
+            var wSvg = width + margin.left + margin.right, hSvg = height + margin.top + margin.bottom;
             var svg = selection.append('svg')
                 .attr('width', wSvg)
                 .attr('height', hSvg)
               .append('g')
-                .attr('transform', 'translate(' + wSvg / 2 + ',' + hSvg / 2 + ')');            	
+                .attr('transform', 'translate(' + wSvg / 2 + ',' + hSvg / 2 + ')');
             // ===========================================================================================
             // g elements to keep elements within svg modular
             svg.append('g').attr('class', 'slices');
@@ -489,9 +430,9 @@ function donutChart() {
                 .datum(data).selectAll('path')
                 .data(pie)
               .enter().append('path')
-                .attr('fill', function(d) { 
+                .attr('fill', function(d) {
                     d.couleur = colour(d.data[category])
-                    return d.couleur; 
+                    return d.couleur;
                 })
                 .attr('d', arc);
             // ===========================================================================================
@@ -543,9 +484,9 @@ function donutChart() {
 
             //ajoute le titre
             svg.append('text')
-                .html(title)            
+                .html(title)
                 .attr('text-anchor', 'middle')
-                .attr('y', hSvg/2);            	
+                .attr('y', hSvg/2);
 
 
             // ===========================================================================================
@@ -564,11 +505,11 @@ function donutChart() {
 
                 // add tooltip (svg circle element) when mouse enters label or slice
                 selection.on('mouseenter', function (data) {
-                	
+
                 		//rend l'image trnasparente
                 		//d3.select('#imgCard'+data.data.id).style('opacity', 0.35);
                         //affiche le texte
-                		//d3.select('#imgOver'+data.data.id).html(toolTipHTML(data));                		
+                		//d3.select('#imgOver'+data.data.id).html(toolTipHTML(data));
                         divTT.transition()
                             .duration(200)
                             .style("opacity", .9);
@@ -599,7 +540,7 @@ function donutChart() {
 	            		//rend l'image normal
 	            		//d3.select('#imgCard'+data.data.id).style('opacity', 1);
 	            		//supprime le texte
-                        //d3.select('#imgOver'+data.data.id).html("");                		                    
+                        //d3.select('#imgOver'+data.data.id).html("");
                         divTT.transition()
                             .duration(500)
                             .style("opacity", 0);
@@ -695,7 +636,7 @@ function donutChart() {
         title = value;
         return chart;
     };
-    
+
     return chart;
 }
 
@@ -719,18 +660,26 @@ $('#infosEtu').on('show.bs.modal', function (e) {
     htm += '<iframe id="ifSitePerso" title="Modèle SVG" src="'+url+'"></iframe>';
     d3.select('#sitePerso').html(htm);
 
-    //affiche l'exercice 1
-    var url = "../"+selectEtu['Votre compte GitHub']+"/ex1/";
-    var htm = '<p><a href="'+url+'">'+url+'</a></p>';
-    htm += '<iframe id="ifEx1Etu" title="Diigo étudiant" src="'+url+'"></iframe>';
-    d3.select('#ex1').html(htm);
-     
- 
+    /*selectEtu['Votre compte Diigo']
+    ht= '<div class="diigo-tags">';
+    ht += '<div class="diigo-banner sidebar-title" style="font: bold 12px arial;margin-bottom:5px;">';
+    ht += '<a href="https://www.diigo.com">';
+    ht += '<img src="https://www.diigo.com/images/ii_blue.gif" width="16" height="16" alt="diigo"/>';
+    ht += '</a>';
+    ht += '<a href="https://www.diigo.com/cloud/luckysemiosis">';
+    ht += 'My Diigo Tags';
+    ht += '</a></div>';
+    //d3.select('#modalEtuBody').html(ht);
+	d3.html("diigo.php", function(html) {
+        //d3.select('#modalEtuBody').append(html);
+        document.getElementById('modalEtuBody').appendChild(html);
+    });
+    */
 })
 //l'événement de fin d'ouverture
 $('#infosEtu').on('shown.bs.modal', function (e) {
     //console.log(e);
-    /**Création du script 
+    /**Création du script
      * merci à https://www.journaldunet.fr/web-tech/developpement/1202955-comment-inclure-un-fichier-javascript-dans-un-autre-fichier-javascript/
     var js = document.createElement('script');
     js.type = 'text/javascript';
@@ -742,7 +691,7 @@ $('#infosEtu').on('shown.bs.modal', function (e) {
     d3.select("#myTabContent").style('height',d3.select("#modalEtuBody").style('height'));
     //affiche la tab du site perso
     $('#sitePerso').tab('show');
-    
+
 })
 
 //gestion des ouverture de tab
@@ -763,7 +712,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             divRecapVeille.append('h2').html('Alertes Google');
             let ulAG = divRecapVeille.append('ul');
             ulAG.selectAll('li').data(selectEtu['alertes']).enter().append('li').html(function(d){return d;});
-        }else divRecapVeille.append('h2').html("Aucunne alertes Google");        
+        }else divRecapVeille.append('h2').html("Aucunne alertes Google");
         if(selectEtu['alertes']){
             divRecapVeille.append('h2').html('Newsletter')
             let ulNL = divRecapVeille.append('ul');
@@ -771,10 +720,10 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             .html(function(d){return '<a href="'+d+'" target="_blank">'+d+'</a>';});
         }else divRecapVeille.append('h2').html("Aucunne Newsletter");
 
-                
+
   }
   if(e.target.id=='rssFlux-tab'){
-        let urlBaseGit = 'https://raw.githubusercontent.com/samszo/GEN_19/master/'+selectEtu['Votre compte GitHub']+'/dashboard.xml'    
+        let urlBaseGit = 'https://raw.githubusercontent.com/samszo/GEN_19/master/'+selectEtu['Votre compte GitHub']+'/dashboard.xml'
         let oOpml = new opml({'urlData':urlBaseGit,'idCont':'rssFlux'});
   }
   /*
@@ -790,15 +739,15 @@ function mdToHtml(u, cont){
         url: u,
         type: 'GET',
         crossDomain: true,
-        success: function(data) { 
+        success: function(data) {
             var converter = new showdown.Converter(),
             html      = converter.makeHtml(data);
             cont.html(html);
         },
-        error: function(error) { 
-            console.log(error); 
+        error: function(error) {
+            console.log(error);
         },
-    });         
+    });
 }
 
 </script>

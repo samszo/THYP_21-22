@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mention Humanités Numériques : trombinoscope de la promotion 2020 - 2021</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+        <div class="jumbotron">
+          <h1>Mention Humanités Numériques</h1>      
+          <p>promotion 2020 - 2021.</p>
+        </div>     
+
+    <div 
+       class="row" id="tt">
+    </div>
+
+<script src="https://cdn.tutorialjinni.com/jquery-csv/1.0.21/jquery.csv.js	"></script>
+<script src="https://cdn.tutorialjinni.com/jquery-csv/1.0.21/jquery.csv.min.js	"></script>
+
+
+<script>
+
+
+$.ajax({
+    type: "GET",
+    url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv",
+    success: function(data) {
+        var dt = $.csv.toObjects(data);
+        let html ='';
+        dt.forEach(element => {
+            console.log(element)
+           
+                let url = new URL(element['Votre photo']);
+                        let urlParam = new URLSearchParams(url.search);
+                        let id = urlParam.get('id');
+                        let src = "https://drive.google.com/uc?id="+id+"&export=download";
+            html += `<div class="card col-md-4" style="width:400px">
+  <img class="card-img-top" src="`+src+`" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">`+element['Votre nom']+` `+element['Votre prénom']+`<br> `+element['Dans quel parcours êtes vous inscris ?']+`</h4>
+    <a href="`+element['Votre mail']+`">`+element['Votre mail']+`</a>
+  </div>
+</div>`
+        });
+      $('#tt').html(html)
+    },
+    error: function (request, status, error) {
+        console.log(request);
+    }
+ });
+  let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv";
+      
+
+
+
+</script>
+</body>
+</html>
