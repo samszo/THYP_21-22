@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humanité numérique 2021-2022</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /*pour les initiales en majuscule*/
         .card-title:first-letter {
             text-transform: uppercase;
         }
@@ -89,12 +91,10 @@
             dataForm = data[0];
             let dataEtu = [];
 
-            //réorganise les datas
             dataForm.forEach(function (d, j) {
                 d.reponses = { 'besoins': [], 'competences': [], 'outils': [] };
                 for (let i in d) {
 
-                    //compilation des facettes
                     let quest = i.indexOf("[") > 0 ? vals[i.substring(0, i.indexOf("[") - 1)] : vals[i];
                     let prop = i.substring(i.indexOf("[") + 1, i.indexOf("]"));
                     let v = d[i];
@@ -121,7 +121,6 @@
                     }
                     if (i.indexOf("besoins") > 0) {
                         d.reponses.besoins.push({ 'prop': prop, 'importance': n, 'expression': v, 'id': j });
-                        //d.reponses.push({'besoins':prop,'val':n,'lib':v});
                     }
                     if (i.indexOf("compétences") > 0) {
                         d.reponses.competences.push({ 'prop': prop, 'importance': n, 'expression': v, 'id': j });
@@ -140,18 +139,15 @@
                 .attr('id', function (d, i) { return 'imgCard' + i })
                 .attr('class', 'card-img-top')
                 .attr('src', function (d) {
-                    //merci à https://davidwalsh.name/query-string-javascript
-                    // https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en
                     let url = new URL(d['Votre photo']);
                     let urlParam = new URLSearchParams(url.search);
                     let id = urlParam.get('id');
-                    //merci à https://stackoverflow.com/questions/50664868/get-pictures-from-google-drive-folder-with-javascript-to-my-website
                     let urlTof = "https://drive.google.com/uc?id=" + id + "&export=download";
                     return urlTof;
                 });
 
 
-            //ajoute le corps de la carte
+    
             var cardBody = cards.append('div').attr('class', 'card-body');
             cardBody.append('h4').attr('class', 'card-title')
                 .text(function (d) {
@@ -163,7 +159,7 @@
                 });
             cardBody.append('h6').text(d => d['Dans quel parcours êtes vous inscris ?']);
 
-            //construction du layout pour les graphiques
+
             html = '<div class="container"><div class="row">';
             html += '<div id="etudNum__Col1" class="col-sm" style="padding-right:0px;padding-left:0px;"></div>';
             html += '<div id="etudNum__Col2" class="col-sm" style="padding-right:0px;padding-left:0px;"></div>';
@@ -174,7 +170,7 @@
             cards.append('div').attr('class', 'card-footer')
                 .append('small').attr('class', 'text-muted')
                 .text(function (d, i) {
-                    //charge le graph des réponses
+
                     var size = 200;
                     drawGraphResponse("#etudNum_" + i + "_Col1", 'Besoins', d.reponses.besoins, size);
                     drawGraphResponse("#etudNum_" + i + "_Col2", 'Compétences', d.reponses.competences, size);
@@ -189,14 +185,14 @@
             let etuGraph = etuChart()
                 .width(size)
                 .height(size)
-                .cornerRadius(0) // sets how rounded the corners are on each slice
-                .padAngle(0) // effectively dictates the gap between slices
+                .cornerRadius(0)
+                .padAngle(0)
                 .variable('importance')
                 .category('prop')
                 .title(titre);
             let s = d3.select(idE)
-                .datum(data) // bind data to the div
-                .call(etuGraph); // draw chart in div
+                .datum(data)
+                .call(etuGraph);
             console.log(idE + " graph fait");
         }
 
@@ -216,24 +212,25 @@
             function chart(selection) {
                 selection.each(function (data) {
 
-                    var radius = Math.min(width, height) / 2;
 
-                    // var pie = d3.pie().value(function (d) {
-                    //     return floatFormat(d[variable]);
-                    // })
-                    //     .sort(null);
+                    // var radius = Math.min(width, height) / 2;
 
-                    var pie = d3.pie();
+                    // // var pie = d3.pie().value(function (d) {
+                    // //     return floatFormat(d[variable]);
+                    // // })
+                    // //     .sort(null);
 
-                    var arc = d3.arc()
-                        .innerRadius(0)
-                        .outerRadius(radius);
+                    // var pie = d3.pie();
 
-                    var arcs = g.selectAll("arc")
-                        .data(pie(data))
-                        .enter()
-                        .append("g")
-                        .attr("class", "arc")
+                    // var arc = d3.arc()
+                    //     .innerRadius(0)
+                    //     .outerRadius(radius);
+
+                    // var arcs = g.selectAll("arc")
+                    //     .data(pie(data))
+                    //     .enter()
+                    //     .append("g")
+                    //     .attr("class", "arc")
 
                     // var arc = d3.arc()
                     //     .outerRadius(radius)
@@ -246,6 +243,25 @@
                     //     .outerRadius(radius)
                     //     .innerRadius(radius);
 
+                    var radius = Math.min(width, height) / 2;
+
+                
+                        var pie = d3.pie()
+                            .value(function (d) { return floatFormat(d[variable]); })
+                            .sort(null);
+
+
+
+                        var arc = d3.arc()
+                            .outerRadius(radius * 0.8)
+                            .innerRadius(radius * 0.6)
+                            .cornerRadius(cornerRadius)
+                            .padAngle(padAngle);
+
+                        var outerArc = d3.arc()
+                            .outerRadius(radius * 0.9)
+                            .innerRadius(radius * 0.9);
+
 
                     var wSvg = width + margin.left + margin.right, hSvg = height + margin.top + margin.bottom;
                     var svg = selection.append('svg')
@@ -254,12 +270,11 @@
                         .append('g')
                         .attr('transform', 'translate(' + wSvg / 2 + ',' + hSvg / 2 + ')');
                     // ===========================================================================================
-                    // g elements to keep elements within svg modular
+
                     svg.append('g').attr('class', 'slices');
                     svg.append('g').attr('class', 'labelName');
                     svg.append('g').attr('class', 'lines');
 
-                    // add and colour the donut slices
                     var path = svg.select('.slices')
                         .datum(data).selectAll('path')
                         .data(pie)
@@ -270,7 +285,6 @@
                         })
                         .attr('d', arc);
 
-                    //ajoute le titre
                     svg.append('text')
                         .html(title)
                         .attr('text-anchor', 'middle')
@@ -278,7 +292,6 @@
                 });
             }
 
-            // getter and setter functions. See Mike Bostocks post "Towards Reusable Charts" for a tutorial on how this works.
             chart.width = function (value) {
                 if (!arguments.length) return width;
                 width = value;
