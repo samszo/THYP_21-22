@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mention Humanités Numériques : trombinoscope de la promotion 2020 - 2021</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <h2>Mention Humanités Numériques : trombinoscope de la promotion 2020 - 2021</h2>
+        
+        <div class="row row-cols-3">
+
+        </div>
+    </div>
+
+
+    <script>
+
+        url = " https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv"
+        d3.csv(url, function (data) {
+            //console.log(data)
+            for (i in data) {
+
+                Horodateur = data[i]["Horodateur"];
+                prenom = data[i]["Votre prénom"];
+                nom = data[i]["Votre nom"];
+                email = data[i]["Votre mail"];
+                num_et = data[i]["N° étudiant"];
+                parcours = data[i]["Dans quel parcours êtes vous inscris ?"];
+                photo = data[i]["Votre photo"];
+                photo = photo.replace("open", "thumbnail");
+
+                d3.select(".row").append("p").html(create_card(Horodateur, prenom, nom, email, num_et, parcours, photo));
+
+            }
+
+        });
+
+        function create_card(Horodateur, prenom, nom, email, num_et, parcours, photo) {
+            console.log(photo);
+
+            html = `<div class="card" style="width: 24rem;">
+                    <img src="`+photo+`" class="card-img-top" alt="..."> 
+                    <!-- <img src="photo.jpg" class="card-img-top" alt="..."> -->
+                    <div class ="card-body">
+                        <h4 class ="card-title">`+ nom +` <small class="text-muted"> `+ prenom +`</small></h4>
+                        <span>`+ email +`</span></br>
+                        <span>`+ num_et +`</span></br>
+                        <span>`+ parcours +`</span></br>
+                    </div>
+                    </div>`
+            return html;
+        };
+
+    </script>
+</body>
+
+</html>
