@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Montserrat CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F4F4FF;
+        }
+    </style>
+
+    <title>TP THYP</title>
+</head>
+<body>
+
+
+<div class="container py-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-auto">
+            <button style="text-align: center;" type="button" name="load_data" id="load_data" class="btn btn-dark py-3 px-5 rounded-pill shadow-sm">Cliquez pour voir la promo THYP 2021/2022<i class="fas fa-sync ms-2"></i></button>
+        </div>
+    </div>
+    <div id="student_card"></div>
+</div>
+</div>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#load_data').click(function(){
+            $.ajax({
+                url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv",
+                dataType:"text",
+                success:function(data)
+                {
+
+                    var employee_data = data.split(/\r?\n|\r/);
+
+                    var students_data = '<div class="row mt-5">';
+
+                    for(var i = 1; i<employee_data.length; i++)
+                    {
+                        var cell_data = employee_data[i].split(",");
+                        students_data += '<div class="col-lg-3 mb-3">';
+                        students_data += '<div class="card border-0 shadow-sm h-100 text-center">';
+
+                        students_data += '<div class="card-body">';
+
+                        students_data += '<div class="d-flex justify-content-center">';
+                        students_data += '<div style="width: 70px; height: 70px; border-radius: 50%; background-color: #EBEBEB">'+'</div>';
+                        students_data += '</div>';
+
+                        students_data += '<div class="h5 my-2 mb-0 fw-bold">'+cell_data[1] +'</div>';
+                        students_data += '<div class="text-secondary small my-2">'+'<i class="fas fa-envelope me-1"></i>'+cell_data[3]+'</div>';
+                        students_data += '<div class="h6 text-secondary small">'+'<i class="fas fa-graduation-cap me-1"></i>'+cell_data[5]+'</div>';
+                        students_data += '<div class="text-secondary small">'+'<i class="fas fa-address-card me-1"></i>'+cell_data[4]+'</div>';
+
+                        students_data += '</div>';
+                        students_data += '</div>';
+                        students_data += '</div>';
+                    }
+                    students_data += '</div>';
+                    $('#student_card').html(students_data);
+                }
+            });
+        });
+
+    });
+</script>
+
+</body>
+</html>
+
