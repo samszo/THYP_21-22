@@ -1,0 +1,39 @@
+html {
+  background: #eee;
+}
+
+body {
+  font-family: "Lucida Bright", "Helvetica Neue", Helvetica, sans-serif;
+  margin: 1em 1em;
+  padding: 0em;
+  width: 50em;
+  background: white;
+}
+
+h1 {
+display: none;
+  font-size: 1.3em;
+}
+
+header {
+display:none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3em;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #444;
+  color: #444;
+  padding-left: 2em;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 1.1em;
+  width: 100%;
+  background-color: white;
+  padding-left: 2em;
+}
