@@ -10,9 +10,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <style>
         .modal-dialog {
-            max-width: 70% !important;
+            max-width: 70%;
+            max-height: calc(100vh - 50px);
+            overflow-y: scroll;
+            /*max-width: 70% !important;*/
+        }
+        .data-table  {
+            height: 1500px;
+            max-height: 1500px;
+            overflow: auto;
+            display:inline-block;
+        }
+           
+        .chart {
+        max-width: 500px;
+        margin: 35px auto;
         }
     </style>
 </head>
@@ -20,32 +35,42 @@
     <div class="container">
         <div class="jumbotron">
             <h1>Liste des étudiants M2 THYP</h1>
-            <p>Promotion 2020 - 2021        </p>
+            <p>Promotion 2020 - 2021       </p>
+            <div class="row">
+               <div class="col-md-4"></div>
+               <div class="col-md-8">
+                  <button type="button" id="parcours" class="btn btn-primary">Parcours</button>
+                  <button type="button" id="ordinateur" class="btn btn-secondary">Ordinateur</button>
+                  <button type="button" id="connexion" class="btn btn-success">Connexion</button>
+               </div>
+            </div>
+            
+            <div id="parcours-chart" class="chart">
+            </div>
+            <div id="ordinateur-chart" class="chart">
+            </div>
+            <div id="connexion-chart" class="chart">
+            </div>
         </div>
+        
         <div class="row" id="content">
 
         </div>
+        
     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.tutorialjinni.com/jquery-csv/1.0.21/jquery.csv.js	"></script>
 <script src="https://cdn.tutorialjinni.com/jquery-csv/1.0.21/jquery.csv.min.js	"></script>
 <script>
 
 
-/*$.ajax({
-    type: "GET",
-    url: "/data/data.csv",
-    success: function(data) {
-        var dt1 = $.csv.toObjects(data);
-        var dt = $.csv.toArrays(data);
-        console.log("dt");
-        console.log(dt);
-    },
-    error: function (request, status, error) {
-        console.log(request);
-    }
- });*/
 let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv";
-      
+
+let havePc = {'oui' : 0, 'non' : 0}
+let parcoursData = {'M2 THYP': 0 ,'M1 CEN': 0, 'M1 NET':0, 'M1 GSI': 0};
+let connexionData = {'4G':0, 'Ethernet': 0, 'Fibre': 0, 'Satellite': 0, 'WIFI': 0}
 getData = (url) => {
     $.ajax({
         type: 'GET',
@@ -56,29 +81,83 @@ getData = (url) => {
           data =$.csv.toObjects(data);
           let html =``;
           let idStudent = 0;
+          let contentList;
+          let competences = {"":3, "je ne connais pas du tout":15,"je connais un peu":25,"je connais bien":27,"je suis expert(e)":30}
+          let charts = [];
           data.forEach(element => {
             idStudent++;
             let url = new URL(element['Votre photo']);
             let urlParam = new URLSearchParams(url.search);
             let id = urlParam.get('id');
+            let competencesStudent = {'CMS' : 0, 'Langages' : 0, 'connaissance des outils informatiques' : 0, 'connaissance informatiques': 0}
             let src = "https://drive.google.com/uc?id="+id+"&export=download";                        
             html += `
-                <div class="card col-md-4" style="margin : 0px 0px 10px 0px;">
-                    <img class="card-img-top" src="${ src }" alt="Card image" height="300px">
+            <div class=" col-md-4">
+                <div class="card" style="margin : 0px 0px 10px 0px;">
+                    <img class="card-img-top" src="${ src }" alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title">${element['Votre prénom']} ${element['Votre nom']}</h4>
                         <h5 class="card-text"> ${element['Votre mail']}</h5>
+                        <div id="chart-${idStudent}">
+                        </div>                  
+                        <div id="chart1">
+                        </div>                  
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#info-${idStudent}">
-                            Show Response
+                            Show Détails Response
                         </button>
                     </div>
-                </div>`
-                let contentList;
+                </div>
+            </div>    
+                `
+                
                 keyList = 0;
+                contentList = '';
                 for (const [key, value] of Object.entries(element)) {
+                    if (key.match(/^CMS.*$/)) {
+                        competencesStudent['CMS'] = competencesStudent['CMS'] + (competences[value] / 11)
+                    }
+                    if (key.match(/^Langages.*$/)) {
+                        competencesStudent['Langages'] = competencesStudent['Langages'] + (competences[value] / 11)
+                    }
+                    if (key.match(/^Quelles outils utilisez vous.*$/)) {
+                        competencesStudent['connaissance des outils informatiques'] = competencesStudent['connaissance des outils informatiques'] + (competences[value] / 11)
+                    }
+                    if (key.match(/^Quelles sont vos compétences.*$/)) {
+                        competencesStudent['connaissance informatiques'] = competencesStudent['connaissance informatiques'] + (competences[value] / 11)
+                    }
+                    if (key.match(/^Avez-vous un ordinateur personnel pour suivre les cours.*$/)) {
+                        if (value == 'Oui') {
+                            havePc['oui'] ++
+                        }else {
+                            havePc['non'] ++
+                        }    
+                    }
+                    if (key.match(/^Dans quel parcours êtes vous inscris.*$/)) {
+                         parcoursData[value] ++
+                    }
+                    if (key == 'Votre connexion internet personnelle est : [4G]') {
+                        if (value == 'De bonne qualité')
+                           connexionData['4G'] ++
+                    }
+                    if (key == 'Votre connexion internet personnelle est : [Ethernet]') {
+                        if (value == 'De bonne qualité')
+                           connexionData['Ethernet'] ++
+                    }
+                    if (key == 'Votre connexion internet personnelle est : [Fibre]') {
+                        if (value == 'De bonne qualité')
+                           connexionData['Fibre'] ++
+                    }
+                    if (key == 'Votre connexion internet personnelle est : [Satellite]') {
+                        if (value == 'De bonne qualité')
+                           connexionData['Satellite'] ++
+                    }
+                    if (key == 'Votre connexion internet personnelle est : [WIFI]') {
+                        if (value == 'De bonne qualité')
+                           connexionData['WIFI'] ++
+                    }
                     keyList++;
                     if (key != 'Votre prénom' || key != 'Votre nom' || key != 'Votre mail') {
-                        contentList += `
+                    /*    contentList += `
                      <li class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#content-${keyList}-${idStudent}">
                         <h3> Question : ${key} <h3>
                          <div id="content-${keyList}-${idStudent}" class="collapse">
@@ -88,11 +167,19 @@ getData = (url) => {
                             </h4>
                         </div>
                      </li>
+                    `*/
+                    contentList += `
+                        <tr class="${(value == '') ? 'table-danger' : 'table-success' }">
+                           <td> ${key} </td>
+                           <td>${(value == '') ? 'n\'as pas répondu ': value}</td>
+                        </tr>
                     `
                     }
                     
                 }
-            html += `<div class="modal" id="info-${idStudent}" width="500px">
+                charts.push({id : `chart-${idStudent}`, series : [Math.round(competencesStudent['CMS']),Math.round(competencesStudent['Langages'] )  ,Math.round(competencesStudent['connaissance des outils informatiques'] ) , Math.round(competencesStudent['connaissance informatiques'])  ], labels : ['CMS','Langages','connaissance des outils informatiques','connaissance informatiques'] });
+
+                html += `<div class="modal" id="info-${idStudent}">
                         <div class="modal-dialog">
                         <div class="modal-content">
                             <!-- Modal Header -->
@@ -102,10 +189,18 @@ getData = (url) => {
                             </div>
                             
                             <!-- Modal body -->
-                            <div class="modal-body">
-                                <div class="list-group">
-                                    ${contentList}
-                                </div>
+                            <div class="modal-body" style="overflow: auto">
+                                 <table id="table-${idStudent}" class="data-table table table-striped table-bordered nowrap table-responsive-sm" style="height: 600px;overflow: scroll;">
+                                     <thead>
+                                         <tr class="table-secondary">
+                                             <th>Question</th>
+                                             <th>Réponse</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody>
+                                         ${contentList}
+                                     </tbody>
+                                 </table>
                             </div>
                             
                             <!-- Modal footer -->
@@ -117,16 +212,124 @@ getData = (url) => {
                         </div>
                     </div>
                 `
-          });
+                $(`#table-${idStudent}`).DataTable();
+               // $('.data-table').DataTable();
           $('#content').html(html)
+          charts.forEach( element => {
+              var options1 = {
+                chart: {
+                    height: 280,
+                    type: "radialBar",
+                },
+                series: element.series,
+                plotOptions: {
+                    radialBar: {
+                    dataLabels: {
+                        total: {
+                        show: true,
+                        label: 'TOTAL'
+                        }
+                    }
+                    }
+                },
+                labels: element.labels
+                };
+
+               new ApexCharts(document.querySelector(`#${element.id}`), options1).render();
+              
+          })
+                },
+                0); 
         },
         error: function(error) { 
             console.log(error); 
         },
+        complete: function() {
+            var optionsPc = {
+                chart: {
+                    type: 'bar'
+                },
+                series: [{
+                    name: 'Personne',
+                    data: [havePc['oui'], havePc['non']]
+                }],
+                xaxis: {
+                    categories: ['avoir un ordinateur', 'n\'a pas d\'ordinateur']
+                }
+            }
+            new ApexCharts(document.querySelector("#ordinateur-chart"), optionsPc).render();
+            let labelsPar = [] , seriesPar = []
+            for (const [key, value] of Object.entries(parcoursData)) {
+                labelsPar.push(key)
+                seriesPar.push(value)
+            }
+            var optionsPar = {
+                chart: {
+                    type: 'bar'
+                },
+                series: [{
+                    name: 'Personne',
+                    data: seriesPar
+                }],
+                xaxis: {
+                    categories: labelsPar
+                }
+            }
+            new ApexCharts(document.querySelector("#parcours-chart"), optionsPar).render()
+
+            let labelsCnx = [] , seriesCnx = []
+            for (const [key, value] of Object.entries(connexionData)) {
+                labelsCnx.push(key)
+                seriesCnx.push(value)
+            }
+            var optionsCnx = {
+                chart: {
+                    type: 'bar'
+                },
+                series: [{
+                    name: 'Personne',
+                    data: seriesCnx
+                }],
+                xaxis: {
+                    categories: labelsCnx
+                }
+            }
+            new ApexCharts(document.querySelector("#connexion-chart"), optionsCnx).render()
+
+        }
     });  
 }
 
-getData(url);
+
+
+
+$('#parcours-chart').hide()
+$('#ordinateur-chart').hide()
+$('#connexion-chart').hide()
+$('#parcours').on('click', ()=>{
+    $('#parcours-chart').show()
+    $('#ordinateur-chart').hide()
+    $('#connexion-chart').hide()
+})
+$('#connexion').on('click', ()=>{
+    $('#parcours-chart').hide()
+    $('#ordinateur-chart').hide()
+    $('#connexion-chart').show()
+})
+$('#ordinateur').on('click', ()=>{
+    $('#parcours-chart').hide()
+    $('#ordinateur-chart').show()
+    $('#connexion-chart').hide()
+})
+
+$("#ordinateur-chart").click(function(){
+    console.log($(this).text)
+});
+
+$(document).ready( function () {
+    getData(url);
+    $('.data-table').DataTable();
+} );
 </script>
 </body>
 </html>
