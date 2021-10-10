@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Promotion 2021/2022</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+    </head>
+
+    <body class="bg-light">
+        <div id="header">
+            <div id="title" >
+                <h1>Mention Humanités Numériques 2021/2022</h1>
+            </div>
+            <div id="facets">
+                <ul class="nav nav-pills mb-3 justify-content-center" id="myTab" role="tablist">
+                   
+                
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="pills-profils" role="tabpanel" aria-labelledby="pills-profils-tab">
+                        <div class="dropdown">
+
+                       
+                            <input id="search" type="text" placeholder="Recherche">
+                            
+                        </div>
+                        <div class="container" style="margin-top: 10px;">
+                            <div id="rows" class="row justify-content-center ">
+                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-stats" role="tabpanel" aria-labelledby="pills-ordinateur-stats">
+                        <div class="container" style="margin-top: 10px;">
+                            <div id="stats-rows" class="row justify-content-center">
+                                <div id="parcours" class='svg col-sm-5 mb-5 mr-2 ml-2 bg-white'>
+                                    <p class="question">Dans quel parcours les étudiants sont-ils inscrits?</p>
+                                </div>
+                                <div id="computer" class='svg col-sm-5 mb-5 mr-2 ml-2 bg-white'>
+                                    <p class="question">Les étudiants ont-ils un ordinateur personnel?</p>
+                                </div>
+                                <div id="wifi" class='svg col-sm-5 mb-5 mr-2 ml-2 bg-white'>
+                                    <p class="question">Quelle est la qualité du réseau wifi?</p>
+                                </div>
+                                <div id="cms" class='svg col-sm-5 mb-5 mr-2 ml-2 bg-white'>
+                                    <p class="question">Quell sont les CMS non connues pas les étudiants?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        
+        <script type="text/javascript">
+            let divContainers = document.getElementById("rows");
+            let input = document.getElementById("search");
+            var div = d3.select("body").append("div")
+                            .attr("class", "tooltip-donut")
+                            .style("opacity", 0);
+        
+          input.addEventListener("keyup", function(event) {
+              if (event.keyCode === 13 && input.value) {
+                  let profils = divContainers.getElementsByTagName("div");
+                  Object.values(profils).forEach(element => {
+                      if(element.innerHTML.includes(input.value)){
+                             element.classList.remove("hide");
+                      }
+                      else{
+                          element.classList.add("hide");
+                      }
+                  });
+               }
+              });
+        
+            d3.csv("data.csv").then(function(data){
+                Transfert(data);
+                Create_Graph(data);
+                console.log(data[1]);
+            });
+        
+             function Tri(id){
+                 let profils = divContainers.getElementsByTagName("div");
+                 document.getElementById("btn_menu").innerText = id
+                 Object.values(profils).forEach(element => {
+                     if(id === "Tous"){
+                         element.classList.remove("hide");
+                     }
+                     else if(element.innerHTML.includes(id)){
+                         element.classList.remove("hide");
+                     }
+                     else {
+                         element.classList.add("hide");
+                     }
+                 });
+             }
+        
+            function Transfert(data){
+                for(let i = 0; i < data.length; i++){
+                    let rs ="", langages ="", langues = "";
+                    Object.keys(data[i]).forEach(element => {
+                    if(data[i][element] !== "je ne connais pas du tout" && element.includes("Langages")){
+                        langages += element.match(/\[(.*?)\]/)[1] + " ";
+                    }
+                    if((data[i][element] === "je connais bien" || data[i][element] === "je suis expert(e)") && element.includes("Langues")){
+                        langues += element.match(/\[(.*?)\]/)[1] + " ";
+                    }
+                    if((data[i][element] === "je suis accro" || data[i][element] === "souvent") && element.includes("sociaux")){
+                        rs += element.match(/\[(.*?)\]/)[1] + " ";
+                    }
+                    
+                });
+                    let url_img = GetImage(data[i]["Votre photo"]);
+                    divContainers.innerHTML += "<div class='profil col-sm-5 mb-5 mr-2 ml-2 bg-white'> "
+                    + "<img class='profil-img' src=" + url_img + "> "
+                    + "<p class'profil-name'> <i class='fa fa-id-card'></i> " + data[i]["Votre prénom"] + " " + data[i]["Votre nom"].toUpperCase() + "<span> " + data[i]["N° étudiant"] + "</span></p> "
+                    + "<p class'profil-email'> <i class='fa fa-envelope'></i> <a style='word-wrap: break-word;' href='mailto:" +  data[i]["Votre mail"] + "'>" + data[i]["Votre mail"] + "</a></p> "
+                    + "<p class'profil-formation'> <i class='fa fa-graduation-cap'></i> " + data[i]["Dans quel parcours êtes vous inscris ?"] + "</p> "
+                    + "<p class'profil-skills'> <i class='fa fa-laptop'></i> " + data[i]["Vos spécialités"] + "</p>"
+                    + "<p class'profil-github'> <i class='fa fa-github'></i><a target='_blank' href='https://github.com/" + data[i]["Votre compte GitHub"]+ "'> " + data[i]["Votre compte GitHub"]  + "</a></p>"
+                    + "<p style='text-align:center;'> <span style=' color: green;'> <i class='fa fa-info-circle fa-3x' onclick='Details(this, " + i + ")' style='cursor: pointer; text-align:center;'></i></span> </p>"
+                    + "<span id='details" + i + "' class='hide'>"
+                    + "<p class'profil-rs'> <i class='fa fa-users'></i> " + rs + "</p>"
+                    + "<p class'profil-langages'> <i class='fa fa-code'></i> " + langages + "</p>"
+                    + "<p class'profil-langues'> <i class='fa fa-language'></i> " + langues + "</p>"
+                    + "</span></div>";
+                }
+            }
+        
+            function Details(ele, id){
+                let div = document.getElementById("details" + id);
+                if(div.classList.contains("hide")){
+                    div.classList.remove("hide");
+                    ele.parentNode.style.color = "red"
+                }
+                else{
+                    div.classList.add("hide");
+                    ele.parentNode.style.color = "green"
+                }
+            }
+        
+            function GetImage(img){
+                let url = new URL(img);
+                let urlParam = new URLSearchParams(url.search);
+                let id = urlParam.get('id');
+                let urlTof = "https://drive.google.com/uc?id="+id+"&export=download";                        
+                return urlTof; 
+            }
+        
+
+        </script>
+    </body>
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,75 @@
+p {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.question{
+    font-size: larger;
+}
+
+#title h1{
+    font-family: 'Crimson Text', serif;
+    height: 10%;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+#title{
+    border-bottom: 1px solid #434b49;
+    margin-bottom: 15px;
+    background-color: whitesmoke;
+}
+
+
+.profil-img {
+    border-radius: 1rem;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.profil, .svg{
+    border: 1px solid #CACFD2;
+    border-radius: 1rem;
+
+}
+
+svg{
+    width: 100%;
+    height: auto;
+}
+
+#myTabContent{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profil{
+    text-align: left;
+}
+
+span{
+    font-style: italic;
+    color: darkgray;
+}
+
+.hide{
+    display: none;
+}
+
+input[type=text] {
+    margin-left: 1rem;
+  }
+
+div.tooltip-donut {
+    position: absolute;
+    text-align: center;
+    padding: .5rem;
+    background: #FFFFFF;
+    color: #313639;
+    border: 1px solid #313639;
+    border-radius: 8px;
+    pointer-events: none;
+    font-size: 1.3rem;
+}
+
