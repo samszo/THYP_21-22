@@ -4,7 +4,7 @@ L'entreprise Netflix qui est une entreprise multinationale américaine créée �
 
 Le projet va donc présenter sous un trombinoscope, les auteurs des séries et des films qui ont connu un grand succès.
 
- ### Représentation d'un(e) auteur
+ ### **Représentation d'un(e) auteur**
  
 Un auteur se décrit par :
 - Son nom
