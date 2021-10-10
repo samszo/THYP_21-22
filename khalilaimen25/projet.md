@@ -13,7 +13,7 @@ mon projet consiste a developpe un site e-commerce specialisé pour la vente des
 - coté client (faire les achats)
 - coté adminstrateur (gérer les produits)
 
-## Project Type:
+## Type de projet:
 
 - Full-Stack
 
