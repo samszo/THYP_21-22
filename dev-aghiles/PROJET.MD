@@ -26,9 +26,7 @@ Création d'un formulaire de contact pour un site web, en utilisant les technolo
 * Créer un nouveau fichier contact.html
 * Coller le code dans votre page
 * Aller à l'emplacement du fichier contact.html et ouvrir avec chrome
-```
-code blocks for commands
-```
+
 
 ## Auteur
 
