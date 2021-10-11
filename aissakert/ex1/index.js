@@ -8,9 +8,7 @@ main();
 
 async function main() {
 	
-  console.log("hello 1")
   let res = await d3.csv(global_var.url);
-  console.log("hello2")
 	var etud_list_info = null;
 
     if (document.getElementById("etud_list_info") != null)
