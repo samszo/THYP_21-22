@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<title>THYP_21-22</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1 class="display-3">Master THYP</h1>
+            <h2>Promotion  2021 - 2022</h2>
+            <hr class="my-4">
+          
+            <ul class="nav nav-tabs" id="tabFacet" role="tablist">
+            </ul>
+            <div class="tab-content" id="tabFacetContent">
+            </div>
+          
+          </div>
+           <div class="container">
+          <div class="row" id="etuCards" >
+        
+        </div>
+         </div>
+        <p></p>
+
+        
+    <script>
+        let html = ""
+        const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv'
+        //const url = 'response.csv';
+        var body=d3.select("body");
+        /*d3.csv(url, function(data) {
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i]);
+            }
+        });*/
+                d3.csv(url,function(data){
+            var para=body.selectAll("p").data(data);
+            para.enter()
+                .append("p")
+                .text(function(d,i){
+                    //var elem = document.getElementById('etuCards');
+
+                    /*div.innerHTML += '<div class="card" style="width: 18rem;">';
+                    div.innerHTML +='<div class="card-body">';
+                    div.innerHTML +='<h5 class="card-title">Card title</h5>';
+                    div.innerHTML +='<p class="card-text">Some quick example .</p>';
+                  div.innerHTML += '<button class="btn btn-primary">bouton</button>';   
+                  div.innerHTML +='</div>';
+                div.innerHTML +='</div>';*/
+
+                        /*div.innerHTML +='<div class="card">';
+                      div.innerHTML +='<div class="card-body">';
+                        div.innerHTML +='Prenom : '+data[i]["Votre prénom"];
+                      div.innerHTML +='</div>';
+                    div.innerHTML +='</div>';*/
+
+
+
+                     
+            return (" N° : "+i+" nom : "+data[i]["Votre prénom"]+" Mail : "+data[i]["Votre mail"]+" Date : "+" Date :  "+d.Horodateur+"")
+                    });
+                    return });
+
+                
+            
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>
