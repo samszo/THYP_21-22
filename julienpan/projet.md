@@ -18,7 +18,7 @@ Un film ou série se décrit par :
 - Son nom
 - Sa date de publication
 - Le/les genre(s)
-- Nombres de vues
+- Nombres de vues ou sa note
 - ...
 
 ...
