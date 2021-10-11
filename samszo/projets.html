@@ -15,8 +15,16 @@
         const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv"; 
         d3.csv(urlCSV).then((dataCSV) => {
             console.log(dataCSV); 
-            d3.select('#listeEtus').selectAll('div').data(dataCSV).enter().append('div')
-                .html(d=>'<h2>'+d['Votre prénom']+'</h2>');
+            let divEtus = d3.select('#listeEtus').selectAll('div').data(dataCSV).enter().append('div')
+                .attr('id',(d,i)=>'etu_'+i+'_'+d['N° étudiant']);
+            divEtus.append('h2').text(d=>{
+                let pn = '';
+                d['Votre prénom'].split(' ').forEach(p => {
+                    pn += p.charAt(0).toUpperCase() + p.substring(1).toLowerCase()
+                });
+                pn += ' '+d['Votre nom'].toUpperCase();
+                return pn;
+            });
 
         });
 
