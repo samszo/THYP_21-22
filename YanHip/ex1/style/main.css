@@ -18,3 +18,10 @@
   color: grey;
 }
 
+#my_graph {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 15%;
+}
