@@ -6,21 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les projets THYP 21-22</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+    
 </head>
 <body>
     <H1>Les projets THYP 21-22</H1>
     <div id="listeEtus"></div>
 
     <script>
+
         const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv"; 
         d3.csv(urlCSV).then((dataCSV) => {
             console.log(dataCSV); 
             //création d'une div par étudiant
             let divEtus = d3.select('#listeEtus').selectAll('div').data(dataCSV).enter().append('div')
-                .attr('id',(d,i)=>'etu_'+i+'_'+d['N° étudiant']);
+                .attr('id',(d,i)=>{
+                    d.idDiv = 'etu_'+i+'_'+d['N° étudiant'];
+                    return d.idDiv;
+                });
             //création d'un titre dans la div étudiant
             divEtus.append('h2').text(d=>{
                 let pn = '';
+                
                 d['Votre prénom'].split(' ').forEach(p => {
                     pn += p.charAt(0).toUpperCase() + p.substring(1).toLowerCase()+' '
                 });
@@ -31,10 +38,23 @@
             divEtus.append('a')
                 .attr('href',d=>'https://samszo.github.io/THYP_21-22/'+d['Votre compte GitHub']+'/projet.md')
                 .text('lien vers la description du projet');
+            //création du bouton d'affichage du md
             divEtus.append('button').text('voir la description du projet').on('click',chargeMd);
+            //création du conteneur pour le md
+            divEtus.append('div').attr('id',d=>{
+                d.idDivMd = d.idDiv+'md';
+                return d.idDivMd;
+            })
+
         });
         function chargeMd(e,d){
-            console.log(d);
+            console.log(d);            
+            let urlFic = 'https://samszo.github.io/THYP_21-22/'+d['Votre compte GitHub']+'/projet.md';
+            d3.text(urlFic).then(txt=>{
+                let conv = new showdown.Converter({metadata: true});
+                let html = conv.makeHtml(txt);
+                d3.select('#'+d.idDivMd).html(html);
+            });
         }
 
     </script>    
