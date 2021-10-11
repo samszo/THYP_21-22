@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <title>Promotion THYP, pour l'année 2021-2022!</title>
+    <style>
+      img {
+          width: 100%; /* You can set the dimensions to whatever you want */
+          height: 300px;
+          object-fit: cover;
+      }
+      .jumbotron {
+        background-color: #f7f7f7;
+        padding: 25px;
+        border: 1px #0000002e solid;
+        border-radius: 0 0 5px 5px;
+      }
+      .accordion-header button{
+        font-size: 0.52em;
+      }
+      .accordion-body{
+        font-size: 0.9em;
+      }
+      .details{
+        float: right;
+      }
+      #exampleModal h3{
+        text-align: center;
+        background: #424242d6;
+        color: white;
+        font-weight: 200;
+        width: 85%;
+        margin: 10px auto;
+        padding: 5px;
+        border-radius: 9px;
+      }
+      #exampleModal h5 a{
+        color: white;
+        padding: 5px 8px;
+        background: #424242;
+        border-radius: 100px;
+        font-size: 14px;
+        vertical-align: middle;
+        display: inline-block;
+        margin-top: -6px;
+        margin-left: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="container">
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <H3 id="langues"><i class="fas fa-globe-europe"></i> Langues</H3>
+              <svg id="chart"></svg>
+              <H3 id="Langages"><i class="fab fa-js"></i> Langages</H3>
+              <svg id="chart2"></svg>
+              <H3 id="Outils"><i class="fas fa-tools"></i> Outils</H3>
+              <svg id="chart3"></svg>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <h1 class="display-5 font-weight-bold">Promotion THYP, pour l'année 2021-2022!</h1>
+        <p class="lead">Ceci est l'enseble des etudiants de la promotion de 2021-2022 de paris 8 inscrits au master THYP</p>
+        <hr class="my-4">
+        
+
+        <p>Comme technos j'ai utilisé: 
+          <span class="badge bg-info text-light"> <i class="fab fa-js-square"></i> JavaScript</span> 
+          <span class="badge bg-info text-light"> <i class="fab fa-js-square"></i> Jquery</span> 
+          <span class="badge bg-dark"> <i class="fas fa-file-code"></i> d3.js</span> 
+          <span class="badge bg-info text-light"> <i class="fas fa-file-code"></i> Bootstrap</span> 
+          <span class="badge bg-dark"> <i class="fab fa-html5"></i> Vanilla HTML</span> 
+          <span class="badge bg-info text-light"> <i class="fab fa-css3-alt"></i> Vanilla CSS</span> 
+        </p>
+        <p class="lead">
+        </p>
+      </div>
+        <div class="row " id ='my-cards'>
+          <!-- <div class="col-4 mt-3" >
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-header">
+                  <h5 class="card-title">ACHAT Asalas</h5>
+                  <p class="card-text"><span class="badge bg-primary">123456</span>
+                    <span class="badge bg-secondary">Parcours</span></p>
+                </div>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        let myData;
+        d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv").then(function(data) {
+        myData=data;
+          for (var i = 0; i < data.length; i++) {
+          console.log(data[i]);
+            let objectifs=data[i]['Vos objectifs professionnels'].split(',');
+            let competences=data[i]['Vos spécialités'].split(',');
+            
+            var MesObjectifs="";
+            for(var j=0; j < objectifs.length;j++){
+              MesObjectifs+='<span class="badge bg-warning text-light">'+objectifs[j]+'</span> ';
+            }
+
+            var MesCompetences="";
+            for(var j=0; j < competences.length;j++){
+              MesCompetences+='<span class="badge bg-dark">'+competences[j]+'</span> ';
+            }
+                            
+            var div = document.createElement('div');
+            div.setAttribute('class', 'col-4 mt-3');
+            
+            let url = new URL(data[i]['Votre photo']);
+            let urlParam = new URLSearchParams(url.search);
+            let id = urlParam.get('id');
+            //merci à https://stackoverflow.com/questions/50664868/get-pictures-from-google-drive-folder-with-javascript-to-my-website
+            let urlTof = "https://drive.google.com/uc?id="+id+"&export=download"; 
+           
+            div.innerHTML = `
+                <div class="card" style="width: auto;">
+                    <img src="${urlTof}" class="card-img-top" alt="...">
+                    <div class="card-header">
+                    <h5 class="card-title">${data[i]['Votre nom']} ${data[i]['Votre prénom']}</h5>
+                    <p class="card-text"><span class="badge bg-primary">${data[i]['N° étudiant']}</span>
+                        <span class="badge bg-secondary">${data[i]['Dans quel parcours êtes vous inscris ?']}</span></p>
+                    </div>
+                    <div class="card-body">
+                    <a title="compte Zotero" href="${data[i]['Votre compte Zotero']}" class="card-link"><i class="fas fa-book"></i></a>
+                    <a title="email" href="mailto:${data[i]['Votre mail']}" class="card-link"><i class="fas fa-envelope-open-text"></i></a>
+                    <a title="compte github" href="https://github.com/${data[i]['Votre compte GitHub']}" class="card-link"><i class="fab fa-github"></i></a>
+                    <a title="compte Diigo" href="${data[i]['Votre compte Diigo']}" class="card-link"><i class="fas fa-share-alt"></i></a>
+                    <button id="${i}" class="details text-light btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <i class="fas fa-info-circle"></i>
+                    </button>
+
+                    <div class="accordion mt-3" id="accordionFlushExample${i}">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header " id="flush-heading${i}">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${i}" aria-expanded="false" aria-controls="flush-collapse${i}">
+                            <span class="badge bg-dark text-light"> Objectifs </span> <span class="badge bg-warning">Spécialités</span>
+                          </button>
+                        </h2>
+                        <div id="flush-collapse${i}" class="accordion-collapse collapse" aria-labelledby="flush-heading${i}" data-bs-parent="#accordionFlushExample${i}">
+                          <div class="accordion-body">
+                            <p>${MesCompetences}  ${MesObjectifs}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('my-cards').appendChild(div);
+            }
+    })
+    </script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        $(document).on("click", ".details", function() {
+          var titre="";
+          var position=this.getAttribute('id');
+          var obj=myData[position], key;
+          var langues= [];
+          var Langages= [];
+          var Outils= [];
+          
+          for(key in obj){
+            if(key.startsWith("Langues")){
+              switch (obj[key])
+              {
+                case "je ne connais pas du tout": break;
+                case "je connais bien": langues.push({name:key,value:75}); break;
+                case "je suis expert(e)": langues.push({name:key,value:100}); break;
+                default: break;
+              }
+              
+            }
+            else if(key.startsWith("Langages")){
+              switch (obj[key])
+              {
+                case "je ne connais pas du tout": break;
+                case "je connais bien": Langages.push({name:key,value:75}); break;
+                case "je suis expert(e)": Langages.push({name:key,value:100}); break;
+                default: break;
+              }
+            }
+            else if(key.startsWith("Quelles outils utilisez vous ?")){
+              switch (obj[key])
+              {
+                case "je ne connais pas du tout": break;
+                case "je connais bien": Outils.push({name:key,value:100}); break;
+                case "je connais un peut": Outils.push({name:key,value:50}); break;
+                default: break;
+              }
+            }
+          }
+          console.log(langues);
+          console.log(Langages);
+          
+            $('#exampleModal h5').text(myData[position]['Votre nom']+" "+myData[position]['Votre prénom']);
+            $('#exampleModal h5').append('<a href="#langues"><i class="fas fa-globe-europe"></i></a> ');
+            $('#exampleModal h5').append(' <a href="#Langages"><i class="fab fa-js"></i></a> ');
+            $('#exampleModal h5').append(' <a href="#Outils"><i class="fas fa-tools"></i></a> ');
+            drawMyBarChart('chart', langues, '#CCB7AE');
+            drawMyBarChart('chart2', Langages, '#A6808C');
+            drawMyBarChart('chart3', Outils, '#706677');
+
+            function drawMyBarChart(selector, thedata, fill){
+                  $("#"+selector).empty();
+                  // The Data that we wish to display on our graph, an array of Javascript Objects
+                  // Set the dimensions of our chart to be displayed 
+                  var barsWidth = 600,
+                    barsHeight = 300,
+                    axisMargin = 100;
+
+                  var chartHeight = barsHeight+axisMargin,
+                    chartWidth = barsWidth+axisMargin;
+
+
+                  // Select the chart element on the page so we can reference it in code
+                  // Also set the width and height attributes of the chart SVG 
+                  var chart = d3.select('#'+selector)
+                    .attr('width', chartWidth+100)
+                    .style("fill", fill)
+                    .attr('height', chartHeight+50);
+
+                  // Create a linear scale for our y-axis to map datapoint values to pixel heights of bars
+                  var yScale = d3.scaleLinear()
+                    .domain([0,d3.max(thedata, function(d){
+                      // return the value property of each datapoint so the max function can compare
+                      return d.value;
+                    })])
+                    .rangeRound([barsHeight, 0]);
+
+                  // Create a scale that returns the bands each bar should be in along the x-axis
+                  let xScale = d3.scaleBand()
+                    .domain(
+                      thedata.map(
+                        function(d){
+                          // For each datapoint in our data array
+                          // Return the name property into our new domain array
+                          return d.name;
+                        }
+                      )
+                    )
+                    .rangeRound([0,barsWidth])
+                    .padding(0.1);
+
+                  // Create an SVG group that we will add the individual bar elements of our chart to
+                  var bars = chart.append('g')
+                    .attr('id', "bars-container");
+
+                  // Bind the data to our .bars svg elements
+                  // Create a rectangle for each data point and set position and dimensions using scales
+                  bars.selectAll('.bar')
+                    .data(thedata)
+                    .enter().append("rect")
+                      .attr('class', "bar")
+                      .attr('x', function(d){
+                        return xScale(d.name);
+                      })
+                      .attr('y', function(d){
+                        return yScale(d.value); 
+                      })
+                      .attr('width', xScale.bandwidth())
+                      .attr('height', function(d){return barsHeight-yScale(d.value);});
+
+                  // Move the bars so that there is space on the left for the y-axis
+                  bars.attr('transform', 'translate('+axisMargin+',0)');
+
+                  // Create a new SVG group for the y-axis elements
+                  // Generate the y-axis with 10 ticks and move into position
+                  yAxis = chart.append('g')
+                    .attr('id','y-axis')
+                    .call(d3.axisLeft(yScale).ticks(10))
+                      .attr('transform', 'translate('+axisMargin+',0)');
+
+                  // Create another group for the x-axis elements
+                  // Generate the x-axis using the our x scale and move into positon
+                  // Select the text elements and rotate by 45 degrees
+                  xAxis = chart.append('g')
+                    .attr('id', 'x-axis')
+                    .call(d3.axisBottom(xScale))
+                    .attr('transform', 'translate('+axisMargin+','+barsHeight+')')
+                    .selectAll("text")
+                      .style("text-anchor",'start')
+                      .attr('transform', 'rotate(45)');
+            };
+
+                      
+        });
+      });
+       
+    </script>
+  </body>
+</html>

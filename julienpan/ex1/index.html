@@ -1,9 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7bab28d0387413d6fe6b8475e3b8ac31592c1c7c
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humanité numérique 2021-2022</title>
@@ -788,3 +792,192 @@
 
 </html>
 >>>>>>> 6f04c330762ec877e499b776a0eb8eb6d447fabb
+=======
+    <title>Mention Humanités Numériques 2021 - 2022</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <title>Mention Humanités Numériques 2021 - 2022</title>
+
+    <input id="searchbar" onkeyup="searchEtud()" type="text" name="search" placeholder="Rechercher un étudiant">
+
+    <div class="find"></div>
+
+    <div class="container" style="margin-top: 10px;">
+        <div class="row" id="rows">
+            <div id="myGraph"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        // function searchEtud() {
+        //     let f = document.getElementsByClassName("find")
+        //     let r = document.getElementById("rows")
+
+        //     let input = document.getElementById('searchbar').value
+        //     input = input.toLowerCase();
+        //     let x = document.getElementsByClassName('name');
+
+        //     for (i = 0; i < x.length; i++) {
+        //         if (!x[i].innerHTML.toLowerCase().includes(input)) {
+        //             x[i].style.display = "none";
+        //         } else {
+        //             f.innerHTML += "<div>"+ x[i] + "</div>"
+        //         }
+        //     }
+        // }
+
+        // let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv";
+        let container_row = document.getElementById("rows");
+        // var div = d3.select("body").append("div")
+        //     .attr("class", "tooltip-donut")
+        //     .style("opacity", 0);
+
+        // d3.queue().defer(d3.csv, url).awaitAll(function (error, results) {
+        //     if (error) throw error;
+        //     setData(results);
+        // });
+
+        d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv").then(function (data) {
+            setData(data);
+            // console.log(data);
+        });
+
+        function setData(data) {
+
+            for (let i = 0; i < data.length; i++) {
+                let CMS = []
+                let langages = []
+                let langues = []
+                let outils = []
+                let skills = []
+                let social = []
+                let besoins = []
+                // console.log(data[i])
+                var keys = Object.keys(data[i])
+                keys.forEach((r) => {
+                    // console.log(keys[i])
+                    if (r.includes("CMS")) {
+                        CMS.push(data[i][r]);
+                    }
+                    if (r.includes("Langages")) {
+                        langages.push(data[i][r]);
+                    }
+                    if (r.includes("Langues")) {
+                        langues.push(data[i][r]);
+                    }
+                    if (r.includes("outils")) {
+                        outils.push(data[i][r]);
+                    }
+                    if (r.includes("compétences")) {
+                        skills.push(data[i][r]);
+                    }
+                    if (r.includes("sociaux")) {
+                        social.push(data[i][r]);
+                    }
+                    if (r.includes("besoins")) {
+                        besoins.push(data[i][r]);
+                    }
+                })
+
+                let url = new URL(data[i]['Votre photo']);
+                let urlParam = new URLSearchParams(url.search);
+                let id = urlParam.get('id');
+                let urlTof = "https://drive.google.com/uc?id=" + id + "&export=download";
+                container_row.innerHTML += "<div class='profil' onclick='showGraph()'>"
+                    + "<div class='image'><img src=" + urlTof + "></div>"
+                    // + "<img class='profil-img' src=" + url + ">"
+                    + "<p class='name'>Nom et prénom : " + data[i]["Votre nom"] + " " + data[i]["Votre prénom"] + "<span><br> Numéro étudiant : " + data[i]["N° étudiant"] + "</span></p> "
+                    + "<p class='email'>Email : <a href='mailto:" + data[i]["Votre mail"] + "'>" + data[i]["Votre mail"] + "</a></p> "
+                    + "<p class='formation'>Parcours : " + data[i]["Dans quel parcours êtes vous inscris ?"] + "</p> "
+                    + "<p class='skills'>Compétences : " + data[i]["Vos spécialités"] + "</p>"
+                    + "<p class='github'>GitHub : <a target='_blank' href='https://github.com/" + data[i]["Votre compte GitHub"] + "'> " + data[i]["Votre compte GitHub"] + "</a></p>"
+                    + "<p class='diigo'>Diigo : <a target='_blank' href='https://www.diigo.com/user/" + data[i]["Votre compte Diigo"] + "'> " + data[i]["Votre compte Diigo"] + "</a></p>"
+                    // + "<p class='zotero'>Zotero : <a target='_blank' href='https://www.zotero/..." + data[i]["Votre compte Zotero"] + "'> " + data[i]["Votre compte Zotero"] + "</a></p>"
+                    + "<button onclick='showGraph(" + JSON.stringify(skills) +")'>Graphique</button>"
+                    + "</div>";
+
+            }
+
+
+            // console.log('CMS :', CMS);
+            // console.log('Langages : ', langages);
+            // console.log('Langues : ', langages);
+            // console.log('outils : ', outils);
+            // console.log('skills : ', skills);
+            // console.log('sociaux : ', social);
+            // console.log('besoins : ', besoins);
+        }
+
+        function showGraph(p) {
+            console.log('Response : ', p);
+
+            // drawGraph();
+        }
+
+        // function drawGraph() {
+        //     // set the dimensions and margins of the graph
+        //     var margin = { top: 10, right: 30, bottom: 30, left: 40 },
+        //         width = 460 - margin.left - margin.right,
+        //         height = 400 - margin.top - margin.bottom;
+
+        //     // append the svg object to the body of the page
+        //     var svg = d3.select("#my_dataviz")
+        //         .append("svg")
+        //         .attr("width", width + margin.left + margin.right)
+        //         .attr("height", height + margin.top + margin.bottom)
+        //         .append("g")
+        //         .attr("transform",
+        //             "translate(" + margin.left + "," + margin.top + ")");
+
+        //     // get the data
+
+
+        //     // X axis: scale and draw:
+        //     var x = d3.scaleLinear()
+        //         .domain([0, 1000])  
+        //         .range([0, width]);
+        //     svg.append("g")
+        //         .attr("transform", "translate(0," + height + ")")
+        //         .call(d3.axisBottom(x));
+
+        //     // set the parameters for the histogram
+        //     var histogram = d3.histogram()
+        //         .value(function (d) { return d.price; })   // I need to give the vector of value
+        //         .domain(x.domain())  // then the domain of the graphic
+        //         .thresholds(x.ticks(70)); // then the numbers of bins
+
+        //     // And apply this function to data to get the bins
+        //     var bins = histogram(data);
+
+        //     // Y axis: scale and draw:
+        //     var y = d3.scaleLinear()
+        //         .range([height, 0]);
+        //     y.domain([0, d3.max(bins, function (d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+        //     svg.append("g")
+        //         .call(d3.axisLeft(y));
+
+        //     // append the bar rectangles to the svg element
+        //     svg.selectAll("rect")
+        //         .data(bins)
+        //         .enter()
+        //         .append("rect")
+        //         .attr("x", 1)
+        //         .attr("transform", function (d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+        //         .attr("width", function (d) { return x(d.x1) - x(d.x0) - 1; })
+        //         .attr("height", function (d) { return height - y(d.length); })
+        //         .style("fill", "#69b3a2")
+        // }
+    </script>
+</body>
+
+
+</html>
+>>>>>>> 7bab28d0387413d6fe6b8475e3b8ac31592c1c7c

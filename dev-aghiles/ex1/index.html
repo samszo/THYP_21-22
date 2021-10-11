@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -807,4 +808,294 @@ function mdToHtml(u, cont){
 <script src="js/opml.js" ></script>
 
 </body>
+=======
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    .card {
+        width: 350px;
+        background-color: burlywood;
+        border-radius: 2%;
+        overflow: hidden;
+        margin-bottom: 25px;
+    }
+
+    .top {
+        background-color: chocolate;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+
+    .avatar {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        border-radius: 50%;
+        outline: burlywood solid 5px;
+    }
+
+    .avatar:hover {
+        transform: scale(1.1);
+    }
+
+    .bottom {
+        padding: 5%;
+    }
+
+    .full-name {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 2em;
+        line-height: normal;
+    }
+
+    .student-number {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 1.25em;
+        font-weight: bold;
+        font-style: italic;
+        line-height: normal;
+    }
+
+    .email-address {
+        padding: 2%;
+        margin: 0;
+        text-align: center;
+        font-size: 1.25em;
+        font-weight: bold;
+        line-height: normal;
+    }
+
+    .email-address a {
+        text-decoration: none;
+        color: darkslategrey;
+        cursor: pointer;
+    }
+    .modal-dialog{
+        margin-left: 10%;
+    }
+    .modal-content{
+        width:170%;
+    }
+    .canva{
+        display: inline-block;
+        width:400px;
+        margin:30px;
+    }
+</style>
+
+<body>
+    <div id="cards" class="cards">
+    </div>
+    <script>
+        var htmlCode = "";
+        function filterValue(v) {
+            switch (v) {
+                case '':
+                    return 0
+                case 'De bonne qualité':
+                    return 10;
+                case 'De qualité moyenne':
+                    return 6;
+                case 'De mauvaise qualité':
+                    return 2;
+                case 'Pas utilisé':
+                    return 0;
+                case 'Pas besoin':
+                    return 2;
+                case 'Besoin d\'approfondissement':
+                    return 6;
+                case 'Besoin urgent':
+                    return 10;
+                default:
+                    break;
+            }
+        }
+
+
+        function canvaTest(a, b, c, d, e) {
+            if (!e) {
+                document.querySelector("#myCanvas").innerHTML = '<canvas id="myChart" width="100" height="100"></canvas> ';
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var params = {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['4g', 'Wifi', 'Ethernet', 'Satellite'],
+                        datasets: [{
+                            label: 'Utilisation de la 4g ',
+                            data: [a, b, c, d],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+
+                }
+                var myChart = new Chart(ctx, params);
+            }
+        }
+        function secondCanva(a, b, c, d, e, f, g, h, i, l, m, n, o, p) {
+            console.log("test")
+            if (!e) {
+                document.querySelector("#myCanvass").innerHTML = '<canvas id="myChartt" width="100" height="100"></canvas>';
+                var ctxx = document.getElementById('myChartt').getContext('2d');
+                var params = {
+                    type: 'line',
+                    data: {
+                        labels: ['outils d’édition web ', 'HTML 5 ', 'RWD', 'rubriques « statiques »  ', 'rubriques multimédias , cartes géographiques, RSS', 'savoir ', 'métadonnées'],
+                        datasets: [{
+                            label: 'Les besoins',
+                            data: [f, g, h, i, l, m, n, o, p],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(215, 170, 73, 0.2)',
+                                'rgba(236, 245, 55, 0.2)',
+                                'rgba(157, 194, 32, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(215, 170, 73, 1)',
+                                'rgba(236, 245, 55, 1)',
+                                'rgba(157, 194, 32, 1)',
+
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+
+                }
+                var myChart = new Chart(ctxx, params);
+                console.log("test 2")
+
+            }
+
+
+        }
+
+
+        getData();
+        async function getData() {
+            const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv');
+            const data = await response.text();
+            const rows = data.split(/\n/).slice(1);
+            rows.forEach(element => {
+                const row = element.split(',');
+                const annuler = true
+                const notAnn = false
+                const name = row[1] + ' ' + row[2];
+                const mail = row[3];
+                const studentNumber = row[4];
+                const studentPict = row[7];
+                const wifi = filterValue(row[9]);
+                const g4 = filterValue(row[10]);
+                const ethernet = filterValue(row[11]);
+                const satellite = filterValue(row[12]);
+                const bOutil = filterValue(row[21]);
+                const bHtml = filterValue(row[22]);
+                const bRwd = filterValue(row[23]);
+                const bRebr = filterValue(row[24]);
+                const bStati = filterValue(row[25]);
+                const bMulti = filterValue(row[26]);
+                const bGeo = filterValue(row[27]);
+                const bRss = filterValue(row[28]);
+                const bMeta = filterValue(row[29]);
+                htmlCode += ` <div class="card"><div id="top" class="top">
+             <img id="avatar"class="avatar" src="https://www.shareicon.net/data/256x256/2015/09/24/106427_man_512x512.png" alt="Photo de Mr/Mme ${name} ">
+        </div>
+        <div class="bottom">
+            <h3 id="full-name"> ${name}</h3>
+             <p class="student-number">${studentNumber}</p>
+             <p id="email-address" class="email-address"><a href="mailto:${mail}">${mail}</a></p>
+             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onClick="canvaTest(${g4},${wifi},${ethernet},${satellite},${notAnn});secondCanva(${g4},${wifi},${ethernet},${satellite},${notAnn},${bOutil},${bHtml},${bRwd},${bRebr},${bStati},${bMulti},${bGeo},${bRss},${bMeta})">Plus d'informations</button>
+             <!-- Modal -->
+             <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+             <!-- Modal content-->
+                 <div class="modal-content">
+                    <div class="modal-header">
+                          <button type="button" class="close" onClick="canvaTest(${g4},${wifi},${ethernet},${satellite},${annuler})" data-dismiss="modal" >&times;</button>
+                          <h4 class="modal-title">Informations complémentaires sur Mme/Mr ${name}</h4>
+                     </div>
+                    <div class="modal-body">
+                     <div class="canva" id="myCanvas"></div>
+                     <div class="canva" id="myCanvass"> </div>
+                    </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" onClick="canvaTest(${g4},${wifi},${ethernet},${satellite},${annuler})"   class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+        
+     </div>
+      
+    </div>
+  </div>
+        </div></div>`;
+
+            });
+            var cards = document.getElementById("cards");
+
+            cards.innerHTML = htmlCode
+        }
+
+
+    </script>
+</body>
+
+>>>>>>> 7bab28d0387413d6fe6b8475e3b8ac31592c1c7c
 </html>
