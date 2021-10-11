@@ -1,1 +1,107 @@
-<html></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="d3.css">
+    <style>
+        
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'montserrat', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+#employee_table {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 20px;
+}
+
+.card {
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 4px;
+    width: 23%;
+}
+
+.img-div {
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+    margin: 0 auto 20px auto;
+}
+
+i {
+    margin-right: 5px;
+}
+
+img {
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+}
+
+.name {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.data {
+    margin: 0 0 10px 0;
+}
+
+    </style>
+    <title>D3 Load Data</title>
+</head>
+<body>
+   <!-- <div class="card">
+        <div class="img-div"> <img src="244213310_3354786808096718_517025799055878407_n.png" alt="photo de profil" width="140px" height="140px"></div>
+        <div class="name"> name</div>
+        <div class="first-name"> first-name</div>
+    </div> -->
+    <h1>Liste des étudiants</h1>
+    <div id="employee_table"></div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+        var div = document.getElementById('employee_table');
+        d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv", function(data) {
+            console.log(data)
+            for (var i = 0; i < data.length ; i++) {
+            var table_data="";
+            let url = new URL(data[i]['Votre photo']);
+            let urlParam = new URLSearchParams(url.search);
+            let id = urlParam.get('id');
+            let src = "https://drive.google.com/uc?id="+id+"&export=download";       
+            table_data += '<div class="card">';
+            table_data += '<div class="img-div"> <img src="'+src+'" alt="photo de profil" width="140px" height="140px"></div>';
+            table_data += '<div class="name"><i class="fas fa-user-circle"></i>'+ data[i]["Votre prénom"]+''+ data[i]["Votre nom"]+'</div>';
+            table_data += '<div class="data"> <i class="far fa-envelope"></i>'+ data[i]["Votre mail"]+'</div>';
+            table_data += '<div class="data"> <i class="fab fa-github"></i>'+ data[i]["Votre compte GitHub"]+'</div>';
+            table_data += '<div>'
+            div.innerHTML +=table_data;
+        }
+        
+    });
+    </script>
+
+</body>
+</html>
