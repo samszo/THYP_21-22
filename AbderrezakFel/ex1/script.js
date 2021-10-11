@@ -4,8 +4,6 @@
                 if(data[i]["Dans quel parcours êtes vous inscris ?"]=="M2 THYP"){
 
                     html = `
-                    <div class="row gy-5">
-
                         <div class="col-6">
                             <div class="p-3 border bg-light">
                                 <img src="`+data[i]["Votre photo"]+`">
@@ -14,8 +12,7 @@
                                 <p>`+ data[i]["N° étudiant"] +`</p>
                                 <p>`+ data[i]["Dans quel parcours êtes vous inscris ?"] +`</p>
                             </div>
-                        </div>
-                    </div>`;
+                        </div>`;
 
                     d3.select(".container").append("p").html(html);
                 }
