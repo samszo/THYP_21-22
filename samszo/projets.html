@@ -9,11 +9,15 @@
 </head>
 <body>
     <H1>Les projets THYP 21-22</H1>
+    <div id="listeEtus"></div>
 
     <script>
         const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv"; 
-        d3.csv(urlCSV).then((data) => {
-            console.log(data); // [{"Hello": "world"}, …]
+        d3.csv(urlCSV).then((dataCSV) => {
+            console.log(dataCSV); 
+            d3.select('#listeEtus').selectAll('div').data(dataCSV).enter().append('div')
+                .html(d=>'<h2>'+d['Votre prénom']+'</h2>');
+
         });
 
     </script>    
