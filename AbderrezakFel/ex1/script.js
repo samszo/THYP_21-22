@@ -14,7 +14,7 @@
                             </div>
                         </div>`;
 
-                    d3.select(".container").append("p").html(html);
+                    d3.select(".row").append("p").html(html);
                 }
             }
 
