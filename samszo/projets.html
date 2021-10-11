@@ -15,18 +15,27 @@
         const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv"; 
         d3.csv(urlCSV).then((dataCSV) => {
             console.log(dataCSV); 
+            //création d'une div par étudiant
             let divEtus = d3.select('#listeEtus').selectAll('div').data(dataCSV).enter().append('div')
                 .attr('id',(d,i)=>'etu_'+i+'_'+d['N° étudiant']);
+            //création d'un titre dans la div étudiant
             divEtus.append('h2').text(d=>{
                 let pn = '';
                 d['Votre prénom'].split(' ').forEach(p => {
-                    pn += p.charAt(0).toUpperCase() + p.substring(1).toLowerCase()
+                    pn += p.charAt(0).toUpperCase() + p.substring(1).toLowerCase()+' '
                 });
-                pn += ' '+d['Votre nom'].toUpperCase();
+                pn += d['Votre nom'].toUpperCase();
                 return pn;
             });
-
+            //création du lien vers le fichier md
+            divEtus.append('a')
+                .attr('href',d=>'https://samszo.github.io/THYP_21-22/'+d['Votre compte GitHub']+'/projet.md')
+                .text('lien vers la description du projet');
+            divEtus.append('button').text('voir la description du projet').on('click',chargeMd);
         });
+        function chargeMd(e,d){
+            console.log(d);
+        }
 
     </script>    
 
