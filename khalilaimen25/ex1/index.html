@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mention Humanités Numériques : trombinoscope de la promotion 2020 - 2021</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/88726be890.js" crossorigin="anonymous"></script>
+
+
+    <style>
+        body {
+            background: #e8cbc0;
+            background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+            background: linear-gradient(to right, #e8cbc0, #636fa4);
+            min-height: 100vh;
+        }
+    
+        .navbar {
+            background: -webkit-linear-gradient(to left, #e8cbc0, #636fa4);
+            background: linear-gradient(to left, #e8cbc0, #636fa4);
+        }
+    
+       
+    
+        .btn {
+            margin: 2px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" style="color: #ddd; font-weight: bold;">Langages et Developement Web</a>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row text-center text-white">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-4">Université Paris 8</h1>
+                <h2 class="display-7">Mention Technologie de l'Hypermedia : trombinoscope de la promotion 2021 - 2022</h2>
+                <p class="lead">Travail de: Hamama Aimen Khalil</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- card container -->
+    <div class="container">
+        <div>
+            <div class="cards row row-cols-4 text-center">
+
+            </div> 
+        </div>
+           
+    </div>
+
+    <!-- modal graph -->
+    <div class="modal fade" id="graphModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Modal title</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+            <div class="modal-body vertical-scroll" id="d3-container">
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- modal infos -->
+    <div class="modal fade" id="graphModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title-info">Modal title</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+            <div class="modal-body vertical-scroll" id="d3-container2">
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+    </div>
+
+    <script>
+
+        window.globalvar = [];
+
+        // let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv"
+        let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=1340290303&single=true&output=csv"
+        d3.csv(url, function (data) {
+                console.log(data)
+                globalvar = data;
+
+                for (i in data) {
+
+                    prenom = data[i]["Votre prénom"];
+                    nom = data[i]["Votre nom"];
+                    email = data[i]["Votre mail"];
+                    num_et = data[i]["N° étudiant"];
+                    parcours = data[i]["Dans quel parcours êtes vous inscris ?"];
+                    photo = data[i]["Votre photo"].replace("open", "thumbnail");
+
+                    d3.select(".cards").append("p").html(create_card(i, prenom, nom, email, num_et, parcours, photo));
+
+                }
+
+            });
+
+        function create_card(i, prenom, nom, email, num_et, parcours, photo) {
+
+                html = `
+                        <div class="bg-white shadow-sm py-5 px-4" style="color:#555;border-radius: 25px;">
+                            <h5 class="text-uppercase">`+ nom + ` <small class="text-muted text-capitalize">` + prenom + `</small></h5>
+                            <img src="`+ photo + `" alt="" width="200" class=" img-thumbnail shadow-sm"></br>
+                            <span><strong>Email: </strong>`+ email + `</span><br>
+                            <span><strong>Num Etudiant: </strong> `+ num_et + `</span></br>
+                            <span><strong>Parcours: </strong> `+ parcours + `</span></br>
+                            <p><a href="#" onClick="moreinfo_data(`+ i + `);" class="link-primary" data-bs-toggle="modal" data-bs-target="#graphModal2">Afficher plus d'information</a></p>
+                            <button type="button" onClick="outils_graph_data(`+ i + `);" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#graphModal">Outils</button>
+                            <button type="button" onClick="langages_graph_data(`+ i + `)" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#graphModal">Langages</button>
+                            <button type="button" onClick="cms_graph_data(`+ i + `)" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#graphModal">CMS</button>
+                            <button type="button" onClick="competences_graph_data(`+ i + `);" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#graphModal">Compétences</button>
+                            <button type="button" onClick="besoins_graph_data(`+ i + `);" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#graphModal">Besoins</button>
+                            <button type="button" onClick="smedia_graph_data(`+ i + `)" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#graphModal">Réseaux sociaux</button>
+                            <button type="button" onClick="langues_graph_data(`+ i + `)" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#graphModal">Langues</button>
+                        
+                        </div>`;
+                return html;
+            };
+      
+        // outils functions
+        function outils_graph_data(id) {
+
+                //console.log(globalvar[id])
+                data = globalvar;
+                var keys = Object.keys(data[id]);
+                var values = Object.values(data[id]);
+
+                outils_keys = keys.slice(79, 119);
+                outils_keys_f = [];
+                for (elm = 0; elm < outils_keys.length; elm++) {
+                    t = outils_keys[elm].match(/(?<=\[)[^\][]*(?=])/g);
+                    outils_keys_f.push(t[0]);
+                };
+
+                outils_vals = values.slice(79, 119);
+                outils_vals_f = [];
+                for (elm = 0; elm < outils_vals.length; elm++) {
+                    n = 0;
+                    switch (outils_vals[elm]) {
+                        case "je ne connais pas du tout": n = 1; break;
+                        case "je connais un peu": n = 5; break;
+                        case "je connais bien": n = 10; break;
+                        case "je suis expert(e)": n = 20; break;
+                    };
+                    outils_vals_f.push(n);
+                };
+
+                outils = [outils_keys_f, outils_vals_f];
+
+                final_data = [];
+                for (m = 0; m < outils_keys.length; m++) {
+                    d = { outil: outils_keys_f[m], score: outils_vals_f[m] };
+                    final_data.push(d);
+                };
+                draw_outils_graph(final_data);
+            };
+
+        function draw_outils_graph(data) {
+
+                const width = 1250;
+                const height = 600;
+                const margin = { top: 50, bottom: 170, left: 10, right: 50 };
+
+                d3.select('#d3-container').html("");
+                d3.select('.modal-title').html("Quelles outils utilisez vous ?");
+                const svg = d3.select('#d3-container')
+                    .append('svg')
+                    .attr('width', width - margin.left - margin.right)
+                    .attr('height', height - margin.top - margin.bottom)
+                    .attr("viewBox", [0, 0, width, height]);
+
+                const x = d3.scaleBand()
+                    .domain(d3.range(data.length))
+                    .range([margin.left, width - margin.right])
+                    .padding(0.1);
+
+                const y = d3.scaleLinear()
+                    .domain([0, 20])
+                    .range([height - margin.bottom, margin.top]);
+
+                svg
+                    .append("g")
+                    .attr("fill", 'royalblue')
+                    .selectAll("rect")
+                    .data(data)
+                    .enter().append("rect")
+                    .attr("x", (d, i) => x(i))
+                    .attr("y", d => y(d.score))
+                    .attr('title', (d) => d.score)
+                    .attr("class", "rect")
+                    .attr("height", d => y(0) - y(d.score))
+                    .attr("width", x.bandwidth());
+
+                function yAxis(g) {
+                    g.attr("transform", `translate(${margin.left}, 0)`)
+                        .call(d3.axisLeft(y).ticks(null, data.format))
+                        .attr("font-size", '20px');
+                };
+
+                function xAxis(g) {
+                    g.attr("transform", `translate(0,${height - margin.bottom})`)
+                        .call(d3.axisBottom(x).tickFormat(i => data[i].outil))
+                        .attr("font-size", '20px');
+
+                };
+
+                svg.append("g").attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".1em")
+                    .attr("transform", "rotate(-65)");
+                svg.append("g").call(yAxis);
+                svg.node();
+
+            };
+        
+        // besoins functions
+        function besoins_graph_data(id) {
+
+                //console.log(globalvar[id])
+                data = globalvar;
+                var keys = Object.keys(data[id]);
+                var values = Object.values(data[id]);
+
+                console.log(values)
+
+
+
+                outils_keys = keys.slice(21, 49);
+                outils_keys_f = [];
+                for (elm = 0; elm < outils_keys.length; elm++) {
+                    t = outils_keys[elm].match(/(?<=\[)[^\][]*(?=])/g);
+                    outils_keys_f.push(t[0]);
+                };
+
+                outils_vals = values.slice(21, 49);
+                outils_vals_f = [];
+                for (elm = 0; elm < outils_vals.length; elm++) {
+                    n = 0;
+                    switch (outils_vals[elm]) {
+                        case "Pas besoin": n = 1; break;
+                        case "Besoin d'approfondissement": n = 5; break;
+                        case "Besoin urgent": n = 10; break;
+                    };
+                    outils_vals_f.push(n);
+                };
+
+                outils = [outils_keys_f, outils_vals_f];
+
+                final_data = [];
+                for (m = 0; m < outils_keys.length; m++) {
+                    d = { besoin: outils_keys_f[m], score: outils_vals_f[m] };
+                    final_data.push(d);
+                };
+                draw_besoins_graph(final_data);
+            };
+        
+        function draw_besoins_graph(data) {
+
+                const width = 1400;
+                const height = 900;
+                const margin = { top: 50, bottom: 400, left: 50, right: 50 };
+
+                d3.select('#d3-container').html("");
+                d3.select('.modal-title').html("Quels sont vos besoins ?");
+                const svg = d3.select('#d3-container')
+                    .append('svg')
+                    .attr('width', width - margin.left - margin.right)
+                    .attr('height', height - margin.top - margin.bottom)
+                    .attr("viewBox", [0, 0, width, height]);
+
+                const x = d3.scaleBand()
+                    .domain(d3.range(data.length))
+                    .range([margin.left, width - margin.right])
+                    .padding(0.1);
+
+                const y = d3.scaleLinear()
+                    .domain([0, 10])
+                    .range([height - margin.bottom, margin.top]);
+
+                svg
+                    .append("g")
+                    .attr("fill", 'royalblue')
+                    .selectAll("rect")
+                    .data(data)
+                    .enter().append("rect")
+                    .attr("x", (d, i) => x(i))
+                    .attr("y", d => y(d.score))
+                    .attr('title', (d) => d.score)
+                    .attr("class", "rect")
+                    .attr("height", d => y(0) - y(d.score))
+                    .attr("width", x.bandwidth());
+
+                function yAxis(g) {
+                    g.attr("transform", `translate(${margin.left}, 0)`)
+                        .call(d3.axisLeft(y).ticks(null, data.format))
+                        .attr("font-size", '20px');
+                };
+
+                function xAxis(g) {
+                    g.attr("transform", `translate(0,${height - margin.bottom})`)
+                        .call(d3.axisBottom(x).tickFormat(i => data[i].besoin))
+                        .attr("font-size", '20px');
+
+                };
+
+                svg.append("g").attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".1em")
+                    .attr("transform", "rotate(-65)");
+                svg.append("g").call(yAxis);
+                svg.node();
+
+            };
+  
+        // compétences functions
+        function competences_graph_data(id) {
+
+                data = globalvar;
+                var keys = Object.keys(data[id]);
+                var values = Object.values(data[id]);
+
+                console.log(keys)
+
+                outils_keys = keys.slice(50, 78);
+                outils_keys_f = [];
+                for (elm = 0; elm < outils_keys.length; elm++) {
+                    t = outils_keys[elm].match(/(?<=\[)[^\][]*(?=])/g);
+                    outils_keys_f.push(t[0]);
+                };
+
+                outils_vals = values.slice(50, 78);
+                outils_vals_f = [];
+                for (elm = 0; elm < outils_vals.length; elm++) {
+                    n = 0;
+                    switch (outils_vals[elm]) {
+                        case "je ne connais pas du tout": n = 1; break;
+                        case "je connais un peu": n = 5; break;
+                        case "je connais bien": n = 10; break;
+                        case "je suis expert(e)": n = 10; break;
+                    };
+                    outils_vals_f.push(n);
+                };
+
+                outils = [outils_keys_f, outils_vals_f];
+
+                final_data = [];
+                for (m = 0; m < outils_keys.length; m++) {
+                    d = { competences: outils_keys_f[m], score: outils_vals_f[m] };
+                    final_data.push(d);
+                };
+                draw_competences_graph(final_data);
+            };
+
+        function draw_competences_graph(data) {
+
+                const width = 1400;
+                const height = 1000;
+                const margin = { top: 50, bottom: 500, left: 50, right: 50 };
+
+                d3.select('#d3-container').html("");
+                d3.select('.modal-title').html("Quels sont vos compétences ?");
+                const svg = d3.select('#d3-container')
+                    .append('svg')
+                    .attr('width', width - margin.left - margin.right)
+                    .attr('height', height - margin.top - margin.bottom)
+                    .attr("viewBox", [0, 0, width, height]);
+
+                const x = d3.scaleBand()
+                    .domain(d3.range(data.length))
+                    .range([margin.left, width - margin.right])
+                    .padding(0.1);
+
+                const y = d3.scaleLinear()
+                    .domain([0, 20])
+                    .range([height - margin.bottom, margin.top]);
+
+                svg
+                    .append("g")
+                    .attr("fill", 'royalblue')
+                    .selectAll("rect")
+                    .data(data)
+                    .enter().append("rect")
+                    .attr("x", (d, i) => x(i))
+                    .attr("y", d => y(d.score))
+                    .attr('title', (d) => d.score)
+                    .attr("class", "rect")
+                    .attr("height", d => y(0) - y(d.score))
+                    .attr("width", x.bandwidth());
+
+                function yAxis(g) {
+                    g.attr("transform", `translate(${margin.left}, 0)`)
+                        .call(d3.axisLeft(y).ticks(null, data.format))
+                        .attr("font-size", '20px');
+                };
+
+                function xAxis(g) {
+                    g.attr("transform", `translate(0,${height - margin.bottom})`)
+                        .call(d3.axisBottom(x).tickFormat(i => data[i].competences))
+                        .attr("font-size", '20px');
+
+                };
+
+                svg.append("g").attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".1em")
+                    .attr("transform", "rotate(-65)");
+                svg.append("g").call(yAxis);
+                svg.node();
+
+            };
+        
+        // langages functions
+        function langages_graph_data(id) {
+            data = globalvar;
+                var keys = Object.keys(data[id]);
+                var values = Object.values(data[id]);
+
+                outils_keys = keys.slice(119, 142);
+                outils_keys_f = [];
+                for (elm = 0; elm < outils_keys.length; elm++) {
+                    t = outils_keys[elm].match(/(?<=\[)[^\][]*(?=])/g);
+                    outils_keys_f.push(t[0]);
+                };
+
+                outils_vals = values.slice(119, 142);
+                outils_vals_f = [];
+                for (elm = 0; elm < outils_vals.length; elm++) {
+                    n = 0;
+                    switch (outils_vals[elm]) {
+                        case "je ne connais pas du tout": n = 1; break;
+                        case "je connais un peu": n = 5; break;
+                        case "je connais bien": n = 10; break;
+                        case "je suis expert(e)": n = 20; break;
+                    };
+                    outils_vals_f.push(n);
+                };
+
+                outils = [outils_keys_f, outils_vals_f];
+
+                final_data = [];
+                for (m = 0; m < outils_keys.length; m++) {
+                    d = { langage: outils_keys_f[m], score: outils_vals_f[m] };
+                    final_data.push(d);
+                };
+                draw_langages_graph(final_data);
+        }
+
+        function draw_langages_graph(data){
+            const width = 1250;
+                const height = 600;
+                const margin = { top: 50, bottom: 170, left: 10, right: 50 };
+
+                d3.select('#d3-container').html("");
+                d3.select('.modal-title').html("Quelles langages connaissez vous ?");
+                const svg = d3.select('#d3-container')
+                    .append('svg')
+                    .attr('width', width - margin.left - margin.right)
+                    .attr('height', height - margin.top - margin.bottom)
+                    .attr("viewBox", [0, 0, width, height]);
+
+                const x = d3.scaleBand()
+                    .domain(d3.range(data.length))
+                    .range([margin.left, width - margin.right])
+                    .padding(0.1);
+
+                const y = d3.scaleLinear()
+                    .domain([0, 20])
+                    .range([height - margin.bottom, margin.top]);
+
+                svg
+                    .append("g")
+                    .attr("fill", 'royalblue')
+                    .selectAll("rect")
+                    .data(data)
+                    .enter().append("rect")
+                    .attr("x", (d, i) => x(i))
+                    .attr("y", d => y(d.score))
+                    .attr('title', (d) => d.score)
+                    .attr("class", "rect")
+                    .attr("height", d => y(0) - y(d.score))
+                    .attr("width", x.bandwidth());
+
+                function yAxis(g) {
+                    g.attr("transform", `translate(${margin.left}, 0)`)
+                        .call(d3.axisLeft(y).ticks(null, data.format))
+                        .attr("font-size", '20px');
+                };
+
+                function xAxis(g) {
+                    g.attr("transform", `translate(0,${height - margin.bottom})`)
+                        .call(d3.axisBottom(x).tickFormat(i => data[i].langage))
+                        .attr("font-size", '20px');
+
+                };
+
+                svg.append("g").attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".1em")
+                    .attr("transform", "rotate(-65)");
+                svg.append("g").call(yAxis);
+                svg.node();
+        }
+  
+        // langues functions
+        function langues_graph_data(id) {
+                data = globalvar;
+                var keys = Object.keys(data[id]);
+                var values = Object.values(data[id]);
+
+                outils_keys = keys.slice(142, 159);
+                outils_keys_f = [];
+                for (elm = 0; elm < outils_keys.length; elm++) {
+                    t = outils_keys[elm].match(/(?<=\[)[^\][]*(?=])/g);
+                    outils_keys_f.push(t[0]);
+                };
+
+                outils_vals = values.slice(142, 159);
+                outils_vals_f = [];
+                for (elm = 0; elm < outils_vals.length; elm++) {
+                    n = 0;
+                    switch (outils_vals[elm]) {
+                        case "je ne connais pas du tout": n = 1; break;
+                        case "je connais un peu": n = 5; break;
+                        case "je connais bien": n = 10; break;
+                        case "je suis expert(e)": n = 20; break;
+                    };
+                    outils_vals_f.push(n);
+                };
+
+                outils = [outils_keys_f, outils_vals_f];
+
+                final_data = [];
+                for (m = 0; m < outils_keys.length; m++) {
+                    d = { langue: outils_keys_f[m], score: outils_vals_f[m] };
+                    final_data.push(d);
+                };
+                draw_langues_graph(final_data);
+        }
+
+        function draw_langues_graph(data){
+                const width = 1250;
+                const height = 600;
+                const margin = { top: 50, bottom: 170, left: 10, right: 50 };
+
+                d3.select('#d3-container').html("");
+                d3.select('.modal-title').html("Quelles Langues connaissez vous ?");
+                const svg = d3.select('#d3-container')
+                    .append('svg')
+                    .attr('width', width - margin.left - margin.right)
+                    .attr('height', height - margin.top - margin.bottom)
+                    .attr("viewBox", [0, 0, width, height]);
+
+                const x = d3.scaleBand()
+                    .domain(d3.range(data.length))
+                    .range([margin.left, width - margin.right])
+                    .padding(0.1);
+
+                const y = d3.scaleLinear()
+                    .domain([0, 20])
+                    .range([height - margin.bottom, margin.top]);
+
+                svg
+                    .append("g")
+                    .attr("fill", 'royalblue')
+                    .selectAll("rect")
+                    .data(data)
+                    .enter().append("rect")
+                    .attr("x", (d, i) => x(i))
+                    .attr("y", d => y(d.score))
+                    .attr('title', (d) => d.score)
+                    .attr("class", "rect")
+                    .attr("height", d => y(0) - y(d.score))
+                    .attr("width", x.bandwidth());
+
+                function yAxis(g) {
+                    g.attr("transform", `translate(${margin.left}, 0)`)
+                        .call(d3.axisLeft(y).ticks(null, data.format))
+                        .attr("font-size", '20px');
+                };
+
+                function xAxis(g) {
+                    g.attr("transform", `translate(0,${height - margin.bottom})`)
+                        .call(d3.axisBottom(x).tickFormat(i => data[i].langue))
+                        .attr("font-size", '20px');
+
+                };
+
+                svg.append("g").attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".1em")
+                    .attr("transform", "rotate(-65)");
+                svg.append("g").call(yAxis);
+                svg.node();
+        }
+    
+        // CMS functions
+        function cms_graph_data(id) {
+                data = globalvar;
+                var keys = Object.keys(data[id]);
+                var values = Object.values(data[id]);
+
+                outils_keys = keys.slice(159, 170);
+                outils_keys_f = [];
+                for (elm = 0; elm < outils_keys.length; elm++) {
+                    t = outils_keys[elm].match(/(?<=\[)[^\][]*(?=])/g);
+                    outils_keys_f.push(t[0]);
+                };
+
+                outils_vals = values.slice(159, 170);
+                outils_vals_f = [];
+                for (elm = 0; elm < outils_vals.length; elm++) {
+                    n = 0;
+                    switch (outils_vals[elm]) {
+                        case "je ne connais pas du tout": n = 1; break;
+                        case "je connais un peu": n = 5; break;
+                        case "je connais bien": n = 10; break;
+                        case "je suis expert(e)": n = 20; break;
+                    };
+                    outils_vals_f.push(n);
+                };
+
+                outils = [outils_keys_f, outils_vals_f];
+
+                final_data = [];
+                for (m = 0; m < outils_keys.length; m++) {
+                    d = { cms: outils_keys_f[m], score: outils_vals_f[m] };
+                    final_data.push(d);
+                };
+                draw_cms_graph(final_data);
+        }
+
+        function draw_cms_graph(data){
+                const width = 1250;
+                const height = 600;
+                const margin = { top: 50, bottom: 170, left: 10, right: 50 };
+
+                d3.select('#d3-container').html("");
+                d3.select('.modal-title').html("Quelles CMS connaissez vous ?");
+                const svg = d3.select('#d3-container')
+                    .append('svg')
+                    .attr('width', width - margin.left - margin.right)
+                    .attr('height', height - margin.top - margin.bottom)
+                    .attr("viewBox", [0, 0, width, height]);
+
+                const x = d3.scaleBand()
+                    .domain(d3.range(data.length))
+                    .range([margin.left, width - margin.right])
+                    .padding(0.1);
+
+                const y = d3.scaleLinear()
+                    .domain([0, 20])
+                    .range([height - margin.bottom, margin.top]);
+
+                svg
+                    .append("g")
+                    .attr("fill", 'royalblue')
+                    .selectAll("rect")
+                    .data(data)
+                    .enter().append("rect")
+                    .attr("x", (d, i) => x(i))
+                    .attr("y", d => y(d.score))
+                    .attr('title', (d) => d.score)
+                    .attr("class", "rect")
+                    .attr("height", d => y(0) - y(d.score))
+                    .attr("width", x.bandwidth());
+
+                function yAxis(g) {
+                    g.attr("transform", `translate(${margin.left}, 0)`)
+                        .call(d3.axisLeft(y).ticks(null, data.format))
+                        .attr("font-size", '20px');
+                };
+
+                function xAxis(g) {
+                    g.attr("transform", `translate(0,${height - margin.bottom})`)
+                        .call(d3.axisBottom(x).tickFormat(i => data[i].cms))
+                        .attr("font-size", '20px');
+
+                };
+
+                svg.append("g").attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".1em")
+                    .attr("transform", "rotate(-65)");
+                svg.append("g").call(yAxis);
+                svg.node();
+        }
+    
+         // socialmedia functions
+         function smedia_graph_data(id) {
+                data = globalvar;
+                var keys = Object.keys(data[id]);
+                var values = Object.values(data[id]);
+
+                outils_keys = keys.slice(170, 190);
+                outils_keys_f = [];
+                for (elm = 0; elm < outils_keys.length; elm++) {
+                    t = outils_keys[elm].match(/(?<=\[)[^\][]*(?=])/g);
+                    outils_keys_f.push(t[0]);
+                };
+
+                outils_vals = values.slice(170, 190);
+                outils_vals_f = [];
+                for (elm = 0; elm < outils_vals.length; elm++) {
+                    n = 0;
+                    switch (outils_vals[elm]) {
+                        case "jamais": n = 1; break;
+                        case "rarement": n = 5; break;
+                        case "souvent": n = 10; break;
+                        case "je suis accro": n = 20; break;
+                    };
+                    outils_vals_f.push(n);
+                };
+
+                outils = [outils_keys_f, outils_vals_f];
+
+                final_data = [];
+                for (m = 0; m < outils_keys.length; m++) {
+                    d = { media: outils_keys_f[m], score: outils_vals_f[m] };
+                    final_data.push(d);
+                };
+                draw_smedia_graph(final_data);
+        }
+
+        function draw_smedia_graph(data){
+                const width = 1250;
+                const height = 600;
+                const margin = { top: 50, bottom: 170, left: 10, right: 50 };
+
+                d3.select('#d3-container').html("");
+                d3.select('.modal-title').html("Quelles reseaux sociaux utiliser vous ?");
+                const svg = d3.select('#d3-container')
+                    .append('svg')
+                    .attr('width', width - margin.left - margin.right)
+                    .attr('height', height - margin.top - margin.bottom)
+                    .attr("viewBox", [0, 0, width, height]);
+
+                const x = d3.scaleBand()
+                    .domain(d3.range(data.length))
+                    .range([margin.left, width - margin.right])
+                    .padding(0.1);
+
+                const y = d3.scaleLinear()
+                    .domain([0, 20])
+                    .range([height - margin.bottom, margin.top]);
+
+                svg
+                    .append("g")
+                    .attr("fill", 'royalblue')
+                    .selectAll("rect")
+                    .data(data)
+                    .enter().append("rect")
+                    .attr("x", (d, i) => x(i))
+                    .attr("y", d => y(d.score))
+                    .attr('title', (d) => d.score)
+                    .attr("class", "rect")
+                    .attr("height", d => y(0) - y(d.score))
+                    .attr("width", x.bandwidth());
+
+                function yAxis(g) {
+                    g.attr("transform", `translate(${margin.left}, 0)`)
+                        .call(d3.axisLeft(y).ticks(null, data.format))
+                        .attr("font-size", '20px');
+                };
+
+                function xAxis(g) {
+                    g.attr("transform", `translate(0,${height - margin.bottom})`)
+                        .call(d3.axisBottom(x).tickFormat(i => data[i].media))
+                        .attr("font-size", '20px');
+
+                };
+
+                svg.append("g").attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".1em")
+                    .attr("transform", "rotate(-65)");
+                svg.append("g").call(yAxis);
+                svg.node();
+
+        }
+    
+        // more infos function
+        function moreinfo_data(i){
+            data = globalvar;
+
+            prenom = data[i]["Votre prénom"];
+            nom = data[i]["Votre nom"];
+            email = data[i]["Votre mail"];
+            num_et = data[i]["N° étudiant"];
+            parcours = data[i]["Dans quel parcours êtes vous inscris ?"];
+            github = data[i]["Votre compte GitHub"];
+            github = data[i]["Votre compte GitHub"];
+            diigo = data[i]["Votre compte Diigo"];
+            zotero = data[i]["Votre compte Zotero"];
+            specialites = data[i]["Vos spécialités"];
+            objectifs = data[i]["Vos objectifs professionnels"];
+            formation_p = data[i]["Votre formation précédente"];
+
+            d3.select("#modal-title-info").html(nom+" "+prenom)
+            d3.select('#d3-container2').html("");
+
+            html = `<p><strong>Email: </strong> `+ email +`</p>
+                    <hr>
+                    <p><strong>Num etudiant: </strong>`+ num_et + ` </p>
+                    <hr>
+                    <p><strong>Parcours: </strong>`+ parcours + ` </p>
+                    <hr>
+                    <p><strong>Formation précédente: </strong>`+ formation_p + ` </p>
+                    <hr>
+                    <p><strong>Compte GitHub: </strong><a href="https://github.com/`+github+`" class="link-primary"> `+ github +`</a></p>
+                    <p><strong>Compte Diigo: </strong><a href="https://diigo.com/user/`+diigo+`" class="link-primary"> `+ diigo +`</a></p>
+                    <p><strong>Compte Zotero: </strong><a href="https://zotero.com/`+zotero+`" class="link-primary"> `+ zotero +`</a></p>
+                    <hr>
+                    <p><strong>Spécialités: </strong>`+ specialites + `</p>
+                    <hr>
+                    <p><strong>Objectifs: </strong>`+ objectifs + `</p>
+
+                    `;
+            d3.select("#d3-container2").append("p").html(html);
+            
+        }
+    </script>
+
+    
+
+
+</body>
+
+</html>
