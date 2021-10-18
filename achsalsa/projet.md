@@ -4,6 +4,10 @@
 ## Projet realisé par ACHAT asalas  ##
 ceci est mon premier fichier markdown dans ___lequel je vais décrire___ mon projet avec des balises markdown
 
-* Premier niveau de cette liste.
-* Premier niveau de cette liste.
+## technos Utilisé  ##
+* Jquery.
+* Bootstrap.
+* vanilla CSS
+* vanilla HTML
+* D3js
 >>>>>>> e5aabc5ca36e17037a3e6f9e39730bc28eaabb59
