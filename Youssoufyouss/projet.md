@@ -1,7 +1,7 @@
 # Youssouf Dabo
 ## Master 2 Technologies Hypermedia
 
-## Projet: Réalisation d'un Site Web:
+## Projet: Réalisation d'un Site Web.
 Création d'un **site Web** avec plusieurs médias, **vidéos, photos** etc.
 
 ## Matériels:
