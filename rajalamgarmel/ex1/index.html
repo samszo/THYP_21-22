@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Promotion 2021/2022</title>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="https://d3js.org/d3.v5.min.js"></script>
 
-	<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Promotion 2021/2022</title>
 
-		.bar {
-			fill: steelblue;
-		}
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
 
-		.bar:hover {
-			fill: brown;
-		}
-
-		.axis--x path {
-			display: none;
-		}
-		.center-div
-		{
-			border-radius: 3px;
-		}
+    <style>
 
 
-	</style>
+    </style>
 </head>
 
 <body class="bg-light">
@@ -37,108 +24,116 @@
 
 <div id="header">
 
-	<div style="background: url(https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/societe/poursuite-du-blocage-de-luniversite-paris-8-saint-denis-3643805/48032921-1-fre-FR/Poursuite-du-blocage-de-l-universite-Paris-8-Saint-Denis.jpg)"
-		 class="jumbotron bg-cover text-red">
-		<div class="container py-5 text-center">
-			<h1 class="display-4 font-weight-bold" style="background-color:white">Mention Humanités Numériques</h1>
-			<p class="font-italic mb-0" style="background-color:white">Promotion  2021 - 2022</p>
-		</div>
-	</div>
+    <div style="background: url(https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/societe/poursuite-du-blocage-de-luniversite-paris-8-saint-denis-3643805/48032921-1-fre-FR/Poursuite-du-blocage-de-l-universite-Paris-8-Saint-Denis.jpg)"
+         class="jumbotron bg-cover text-red">
+        <div class="container py-5 text-center">
+            <h1 class="display-4 font-weight-bold" style="background-color:white">Mention Humanités Numériques</h1>
+            <p class="font-italic mb-0" style="background-color:white">Promotion  2021 - 2022</p>
+        </div>
+    </div>
 
-	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-		<li class="nav-item">
-			<a class="nav-link active" id="pills-parcours-tab" data-toggle="pill" href="#pills-parcours" role="tab" aria-controls="pills-home" aria-selected="true">Parcours</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-ordinateur-tab" data-toggle="pill" href="#pills-ordinateurs" role="tab" aria-controls="pills-profile" aria-selected="false">Ordinateur</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-connexion-tab" data-toggle="pill" href="#pills-connexion" role="tab" aria-controls="pills-contact" aria-selected="false">Connexion</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-compte-tab" data-toggle="pill" href="#pills-compte" role="tab" aria-controls="pills-contact" aria-selected="false">Compte</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-objectifs-tab" data-toggle="pill" href="#pills-objectifs" role="tab" aria-controls="pills-contact" aria-selected="false">Objectifs</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-formation-tab" data-toggle="pill" href="#pills-formation" role="tab" aria-controls="pills-contact" aria-selected="false">Formation</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-competences-tab" data-toggle="pill" href="#pills-competences" role="tab" aria-controls="pills-contact" aria-selected="false">Compétences</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-outils-tab" data-toggle="pill" href="#pills-outils" role="tab" aria-controls="pills-contact" aria-selected="false">Outils</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-langage-tab" data-toggle="pill" href="#pills-langage" role="tab" aria-controls="pills-contact" aria-selected="false">Langage</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-langue-tab" data-toggle="pill" href="#pills-langue" role="tab" aria-controls="pills-contact" aria-selected="false">Langue</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-cms-tab" data-toggle="pill" href="#pills-cms" role="tab" aria-controls="pills-contact" aria-selected="false">CMS</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="pills-rs-tab" data-toggle="pill" href="#pills-rs" role="tab" aria-controls="pills-contact" aria-selected="false">Réseaux sociaux</a>
-		</li>
-	</ul>
-	<div class="tab-content" id="pills-tabContent">
-		<div  class="tab-pane fade show active" id="pills-parcours" role="tabpanel" aria-labelledby="pills-parcours-tab">
-			<center><div width="960" height="500" id="parcours"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-ordinateurs" role="tabpanel" aria-labelledby="pills-profile-tab">
-			<center><div width="960" height="500" id="ordinateurs"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-connexion" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="connexion"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-objectifs" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="objectifs"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-compte" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="compte"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-formation" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="formation"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-competences" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="competences"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-outils" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="outils"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-langage" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="langage"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-langue" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="langue"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-cms" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="cms"> </div></center>
-		</div>
-		<div class="tab-pane fade" id="pills-rs" role="tabpanel" aria-labelledby="pills-contact-tab">
-			<center><div width="960" height="500" id="rs"> </div></center>
-		</div>
-	</div>
+    <ul class="nav justify-content-center nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-parcours-tab" data-toggle="pill" href="#pills-parcours" role="tab" aria-controls="pills-home" aria-selected="true">Parcours</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-ordinateur-tab" data-toggle="pill" href="#pills-ordinateurs" role="tab" aria-controls="pills-profile" aria-selected="false">Ordinateur</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-connexion-tab" data-toggle="pill" href="#pills-connexion" role="tab" aria-controls="pills-contact" aria-selected="false">Connexion</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-cms-tab" data-toggle="pill" href="#pills-cms" role="tab" aria-controls="pills-contact" aria-selected="false">CMS</a>
+        </li>
 
-	<div id="facets">
-		<div class="tab-content" id="myTabContent">
-			<div class="tab-pane fade show active" id="pills-profils" role="tabpanel" aria-labelledby="pills-profils-tab">
-				<div class="container">
-					<div id ="rows" class="row">
+        <!--
+        <li class="nav-item">
+            <a class="nav-link" id="pills-compte-tab" data-toggle="pill" href="#pills-compte" role="tab" aria-controls="pills-contact" aria-selected="false">Compte</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-objectifs-tab" data-toggle="pill" href="#pills-objectifs" role="tab" aria-controls="pills-contact" aria-selected="false">Objectifs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-formation-tab" data-toggle="pill" href="#pills-formation" role="tab" aria-controls="pills-contact" aria-selected="false">Formation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-competences-tab" data-toggle="pill" href="#pills-competences" role="tab" aria-controls="pills-contact" aria-selected="false">Compétences</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-outils-tab" data-toggle="pill" href="#pills-outils" role="tab" aria-controls="pills-contact" aria-selected="false">Outils</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-langage-tab" data-toggle="pill" href="#pills-langage" role="tab" aria-controls="pills-contact" aria-selected="false">Langage</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-langue-tab" data-toggle="pill" href="#pills-langue" role="tab" aria-controls="pills-contact" aria-selected="false">Langue</a>
+        </li>
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-rs-tab" data-toggle="pill" href="#pills-rs" role="tab" aria-controls="pills-contact" aria-selected="false">Réseaux sociaux</a>
+        </li>
+         -->
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div  class="tab-pane fade show active" id="pills-parcours" role="tabpanel" aria-labelledby="pills-parcours-tab">
+            <center><div width="960" height="500" id="parcours"> </div></center>
+        </div>
+        <div class="tab-pane fade" id="pills-ordinateurs" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <center><div width="960" height="500" id="ordinateurs"> </div></center>
+        </div>
+        <div class="tab-pane fade" id="pills-connexion" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <center><div width="960" height="500" id="connexion"> </div></center>
+        </div>
+        <div class="tab-pane fade" id="pills-cms" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <center><div width="960" height="500" id="cms"> </div></center>
+        </div>
+        <!--
+       <div class="tab-pane fade" id="pills-objectifs" role="tabpanel" aria-labelledby="pills-contact-tab">
+           <center><div width="960" height="500" id="objectifs"> </div></center>
+       </div>
+       <div class="tab-pane fade" id="pills-compte" role="tabpanel" aria-labelledby="pills-contact-tab">
+           <center><div width="960" height="500" id="compte"> </div></center>
+       </div>
+       <div class="tab-pane fade" id="pills-formation" role="tabpanel" aria-labelledby="pills-contact-tab">
+           <center><div width="960" height="500" id="formation"> </div></center>
+       </div>
+       <div class="tab-pane fade" id="pills-competences" role="tabpanel" aria-labelledby="pills-contact-tab">
+           <center><div width="960" height="500" id="competences"> </div></center>
+       </div>
+       <div class="tab-pane fade" id="pills-outils" role="tabpanel" aria-labelledby="pills-contact-tab">
+           <center><div width="960" height="500" id="outils"> </div></center>
+       </div>
+       <div class="tab-pane fade" id="pills-langage" role="tabpanel" aria-labelledby="pills-contact-tab">
+           <center><div width="960" height="500" id="langage"> </div></center>
+       </div>
+       <div class="tab-pane fade" id="pills-langue" role="tabpanel" aria-labelledby="pills-contact-tab">
+           <center><div width="960" height="500" id="langue"> </div></center>
+       </div>
 
-	<!-- Modal -->
-	<div id='Modal'>
+       <div class="tab-pane fade" id="pills-rs" role="tabpanel" aria-labelledby="pills-contact-tab">
+           <center><div width="960" height="500" id="rs"> </div></center>
+       </div>
+       -->
+   </div>
+    <hr>
+
+   <div id="facets">
+       <div class="tab-content" id="myTabContent">
+           <div class="tab-pane fade show active" id="pills-profils" role="tabpanel" aria-labelledby="pills-profils-tab">
+               <div class="container">
+                   <div id ="rows" class="row">
+
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <!-- Modal -->
+    <div id='Modal'>
 
 
-	</div>
+    </div>
 
 
 
@@ -146,255 +141,337 @@
 </div>
 
 <script type="text/javascript">
-	let divContainers = document.getElementById("rows");
-	let divModal= document.getElementById('Modal');
-	let url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv';
-
-	d3.csv(url).then(function(data){
-		Setdata(data);
-		console.log(data[1]);
-	});
-
-	var div = d3.select("body").append("div")
-			.attr("class", "tooltip-donut")
-			.style("opacity", 0);
-
-	function GetImg(img){
-		let url = new URL(img);
-		let urlParam = new URLSearchParams(url.search);
-		let id = urlParam.get('id');
-		let urlTof = "https://drive.google.com/uc?id="+id+"&export=download";
-		return urlTof;
-	}
-
-	function Setdata(data){
-		let idEtud = 0;
-		let parcours = {"M1 CEN": 0, "M2 THYP": 0, "M1 NET": 0, "M1 GSI": 0};
-		let ordinateurs = {Oui: 0, Non: 0};
-		let connexion = {"Bonne": 0, "Moyenne": 0, "Mauvaise": 0, "Autre": 0};
-		let cms = {"Alfresco": 0, "Drupal": 0, "Joomla": 0, "LMS": 0, "Moodle": 0, "Omeka S": 0,
-			"Omeka classique": 0, "Presta shop": 0, "SPIP": 0, "Sharepoint": 0, "Wordpress": 0};
 
 
-		for(let i = 0; i < data.length; i++){
-			idEtud++;
-			let url_img = GetImg(data[i]["Votre photo"]);
-			divContainers.innerHTML += "<div class='col-12 col-sm-6 col-lg-3'>"
-					+"<div class='single_advisor_profile wow fadeInUp data-wow-delay=\"0.3s\"' style=\"visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;\">"
-					+"<div class=\"advisor_thumb\"><img style = 'max-width: 100%; max-height: 100%;' src=" + url_img + ">"
-					+"<div class='single_advisor_details_info'>"
-					+"<h6>"+ data[i]["Votre prénom"] + " " + data[i]["Votre nom"].toUpperCase() +"</h6>"
-					+"<p class='designation'>" + "<span> " + data[i]["Dans quel parcours êtes vous inscris ?"] + " </span></p>"
-					+" </div>"
-					+"<div class='single_advisor_details_info'>"
-					+"<div id='chart'>"
-					+"</div>"
+    let divContainers = document.getElementById("rows");
+    let divModal= document.getElementById('Modal');
+    let url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv';
 
-					+"<center><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target='#modal' >" +
-					"Détails" +
-					"</button></center>"
+    d3.csv(url).then(function(data){
+        Setdata(data);
+        console.log(data[1]);
+    });
 
-					+"</div>";
+    var div = d3.select("body").append("div")
+        .attr("class", "tooltip-donut")
+        .style("opacity", 0);
 
+    function GetImg(img){
+        let url = new URL(img);
+        let urlParam = new URLSearchParams(url.search);
+        let id = urlParam.get('id');
+        let urlTof = "https://drive.google.com/uc?id="+id+"&export=download";
+        return urlTof;
+    }
 
-			divModal.innerHTML +=
-					"<div class='modal fade' id='modal' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"+
-					"<div class=\"modal-dialog\" role=\"document\">\n"+
-					" <div class=\"modal-content\">"+
-					"<div class=\"modal-header\">"+
-					"<h5 class=\"modal-title\" id=\"exampleModalLabel\">"+ data[i]["Votre prénom"] + " " + data[i]["Votre nom"].toUpperCase() + "<span class=\"badge badge-danger\">" + data[i]["Dans quel parcours êtes vous inscris ?"].toUpperCase() + "</span>"+"</h5>"+
-					"<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">"+
-					"<span aria-hidden=\"true\">&times;</span>"+
-					"</button>"+
-					"</div>"+
-					"<div class='modal-body'>"
-					+"<p> Numéro Etudiant : <span class=\"badge badge-primary\">" + data[i]['N° étudiant']  + "</span></p>"
-					+"<p> Adresse mail : <span class=\"badge badge-secondary\">" + data[i]['Votre mail']  + "</span></p>"
-					+"<p> Ordinateur personnel ? : <span class=\"badge badge-success\">" + data[i]['Avez-vous un ordinateur personnel pour suivre les cours ?']  + "</span></p>"
-					+"<p> Compte GitHub : <span class=\"badge badge-light\">" + data[i]['Votre compte GitHub']  + "</span></p>"
-					+"<p> Spécialités : <span class=\"badge badge-info\">" + data[i]['Vos spécialités']  + "</span></p>"
-					+"</div>"+
-					"<div class='modal-body'>"+
-					"<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-					"</div>"+
-					"</div>"
-					+"</div>"
-					+"</div>";
+    function Setdata(data){
+        let idEtud = 0;
+        let parcours = {"M1 CEN": 0, "M2 THYP": 0, "M1 NET": 0, "M1 GSI": 0};
+        let ordinateurs = {Oui: 0, Non: 0};
+        let connexion = {"Bonne": 0, "Moyenne": 0, "Mauvaise": 0, "Autre": 0};
+        let cms = {"Alfresco": 0, "Drupal": 0, "Joomla": 0, "LMS": 0, "Moodle": 0, "Omeka S": 0,
+            "Omeka classique": 0, "Presta shop": 0, "SPIP": 0, "Sharepoint": 0, "Wordpress": 0};
 
+        for(let i = 0; i < data.length; i++){
+            let besoins = {"Pas besoin":0, "Besoin d'approfondissement":0, "Besoin urgent":0};
+            let outils = { "je ne connais pas du tout":0,"je connais un peu":0,"je connais bien":0,"je suis expert(e)":0};
+            let competences = { "je ne connais pas du tout":0,"je connais un peu":0,"je connais bien":0,"je suis expert(e)":0};
+            idEtud++;
+            let url_img = GetImg(data[i]["Votre photo"]);
+            divContainers.innerHTML += "<div class='col-12 col-sm-6 col-lg-3'>"
+                +"<div class='single_advisor_profile wow fadeInUp data-wow-delay=\"0.3s\"' style=\"visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;\">"
+                +"<div class=\"advisor_thumb\"><img style = 'max-width: 100%; max-height: 100%;' src="+ url_img + ">"
+                +"<div class='single_advisor_details_info'>"
+                +"<h6>"+ data[i]["Votre prénom"] + " " + data[i]["Votre nom"].toUpperCase() +"</h6>"
+                +"<p class='designation'>" + "<span> " + data[i]["Dans quel parcours êtes vous inscris ?"] + " </span></p>"
+                +" </div>"
+                +"<div class='single_advisor_details_info'>"
+                +"<div id='chart'>"
+                +"</div>"
 
+                +"<center><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#"+ idEtud +"\">"
+                + "Détails" +
+                "</button></center>"
 
-			// Parcours
-
-			if(data[i]['Dans quel parcours êtes vous inscris ?'] === "M1 CEN"){
-				parcours["M1 CEN"]++;
-			}
-			else if(data[i]['Dans quel parcours êtes vous inscris ?'] === "M2 THYP"){
-				parcours["M2 THYP"]++;
-			}
-			else if(data[i]['Dans quel parcours êtes vous inscris ?'] === "M1 NET"){
-				parcours["M1 NET"]++;
-			}
-			else if(data[i]['Dans quel parcours êtes vous inscris ?'] === "M1 GSI"){
-				parcours["M1 GSI"]++;
-			}
-
-			// Ordinateur
+                +"</div>";
 
 
-			if(data[i]['Avez-vous un ordinateur personnel pour suivre les cours ?'] === "Oui"){
-				ordinateurs.Oui++;
-			}
-			else{
-				ordinateurs.Non++;
-			}
+            divModal.innerHTML +=
+                "<div id="+ idEtud +"  class='modal fade' tabIndex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true'>"+
+                "<div class=\"modal-dialog modal-lg\" role=\"document\">\n"+
+                " <div class=\"modal-content\">"+
+                "<div class=\"modal-header\">"+
+                "<h5 class=\"modal-title\" id=\"exampleModalLabel\">"+ data[i]["Votre prénom"] + " " + data[i]["Votre nom"].toUpperCase() + "   " + "<span class=\"badge badge-danger\">" + data[i]["Dans quel parcours êtes vous inscris ?"].toUpperCase() + "</span>"+"</h5>"+
+                "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">"+
+                "<span aria-hidden=\"true\">&times;</span>"+
+                "</button>"+
+                "</div>"+
+                "<div class='modal-body'>"
+                +"<p> Numéro Etudiant : <span class=\"badge badge-primary\">" + data[i]['N° étudiant']  + "</span></p>"
+                +"<p> Adresse mail : <span class=\"badge badge-secondary\">" + data[i]['Votre mail']  + "</span></p>"
+                +"<p> Ordinateur personnel ? : <span class=\"badge badge-success\">" + data[i]['Avez-vous un ordinateur personnel pour suivre les cours ?']  + "</span></p>"
+                +"<p> Compte GitHub : <span class=\"badge badge-light\">" + data[i]['Votre compte GitHub']  + "</span></p>"
+                +"<p> Spécialités : <span class=\"badge badge-info\">" + data[i]['Vos spécialités']  + "</span></p>"
+                +"<hr>"
+                +"<div class = 'row'>"
+                +"<div class = 'col-xs-6 col-sm-4'  id=\"besoins"+ idEtud +"\">besoins</div>"
+                +"<div class='col-xs-6 col-sm-4' id=\"comp"+ idEtud +"\">competences</div>"
+                +"<div class='col-xs-6 col-sm-4' id=\"outils"+ idEtud +"\">outils</div>"
+                +"</div>"
+                +"</div>"+
+                "<div class='modal-body'>"+
+                "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
+                "</div>"+
+                "</div>"
+                +"</div>"
+                +"</div>";
 
 
-			// connexion
+            for (const [key, value] of Object.entries(data[i])) {
+                if (key.includes("besoins")){
+                    if(value === "Pas besoin"){
+                        besoins["Pas besoin"]++;
+                    }
+                    else if(value === "Besoin d'approfondissement"){
+                        besoins["Besoin d'approfondissement"]++;
+                    }
+                    else if(value ===  "Besoin urgent"){
+                        besoins["Besoin urgent"]++;
+                    }
+                }
+                else if (key.includes("outils")) {
+                    if(value == "je ne connais pas du tout"){
+                        outils["je ne connais pas du tout"]++;
+                    }
+                    else if(value.includes("je connais un peu")){
+                        outils["je connais un peu"]++;
+                    }
+                    else if(value.includes("je connais bien")){
+                        outils["je connais bien"]++;
+                    }
+                    else if(value.includes("je suis expert(e)")){
+                        outils["je suis expert(e)"]++;
+                    }
+                }
+                else if (key.includes("compétences")) {
+                    if(value == "je ne connais pas du tout"){
+                        competences["je ne connais pas du tout"]++;
+                    }
+                    else if(value.includes("je connais un peu")){
+                        competences["je connais un peu"]++;
+                    }
+                    else if(value.includes("je connais bien")){
+                        competences["je connais bien"]++;
+                    }
+                    else if(value.includes("je suis expert(e)")){
+                        competences["je suis expert(e)"]++;
+                    }
+                }
+
+            }
+
+            drawGraph(competences,'#comp'+ idEtud, 350,350,-20,250)
+            drawGraph(outils,'#outils'+ idEtud, 350,350,-20,250)
+            drawGraph(besoins,'#besoins'+ idEtud, 350,350,-20,250)
 
 
-			if(data[i]['Votre connexion internet personnelle est : [WIFI]'].includes("bonne")){
-				connexion["Bonne"]++;
-			}
-			else if(data[i]['Votre connexion internet personnelle est : [WIFI]'].includes("moyenne")){
-				connexion["Moyenne"]++;
-			}
-			else if(data[i]['Votre connexion internet personnelle est : [WIFI]'].includes("mauvaise")){
-				connexion["Mauvaise"]++;
-			}
-			else {
-				connexion["Autre"]++;
-			}
+            // Parcours
+
+            if(data[i]['Dans quel parcours êtes vous inscris ?'] === "M1 CEN"){
+                parcours["M1 CEN"]++;
+            }
+            else if(data[i]['Dans quel parcours êtes vous inscris ?'] === "M2 THYP"){
+                parcours["M2 THYP"]++;
+            }
+            else if(data[i]['Dans quel parcours êtes vous inscris ?'] === "M1 NET"){
+                parcours["M1 NET"]++;
+            }
+            else if(data[i]['Dans quel parcours êtes vous inscris ?'] === "M1 GSI"){
+                parcours["M1 GSI"]++;
+            }
+
+            // Ordinateur
+
+
+            if(data[i]['Avez-vous un ordinateur personnel pour suivre les cours ?'] === "Oui"){
+                ordinateurs.Oui++;
+            }
+            else{
+                ordinateurs.Non++;
+            }
+
+
+            // connexion
+
+
+            if(data[i]['Votre connexion internet personnelle est : [WIFI]'].includes("bonne")){
+                connexion["Bonne"]++;
+            }
+            else if(data[i]['Votre connexion internet personnelle est : [WIFI]'].includes("moyenne")){
+                connexion["Moyenne"]++;
+            }
+            else if(data[i]['Votre connexion internet personnelle est : [WIFI]'].includes("mauvaise")){
+                connexion["Mauvaise"]++;
+            }
+            else {
+                connexion["Autre"]++;
+            }
 
 
 
-			if(data[i]['CMS [Alfresco]'] === "je ne connais pas du tout"){
-				cms["Alfresco"]++;
-			}
-			if(data[i]['CMS [Drupal]'] === "je ne connais pas du tout"){
-				cms["Drupal"]++;
-			}
-			if(data[i]['CMS [Joomla]'] === "je ne connais pas du tout"){
-				cms["Joomla"]++;
-			}
-			if(data[i]['CMS [LMS]'] === "je ne connais pas du tout"){
-				cms["LMS"]++;
-			}
-			if(data[i]['CMS [Moodle]'] === "je ne connais pas du tout"){
-				cms["Moodle"]++;
-			}
-			if(data[i]['CMS [Omeka S]'] === "je ne connais pas du tout"){
-				cms["Omeka S"]++;
-			}
-			if(data[i]['CMS [Omeka classique]'] === "je ne connais pas du tout"){
-				cms["Omeka classique"]++;
-			}
-			if(data[i]['CMS [Presta shop]'] === "je ne connais pas du tout"){
-				cms["Presta shop"]++;
-			}
-			if(data[i]['CMS [SPIP]'] === "je ne connais pas du tout"){
-				cms["SPIP"]++;
-			}
-			if(data[i]['CMS [Sharepoint]'] === "je ne connais pas du tout"){
-				cms["Sharepoint"]++;
-			}
-			if(data[i]['CMS [Wordpress]'] === "je ne connais pas du tout"){
-				cms["Wordpress"]++;
-			}
+            if(data[i]['CMS [Alfresco]'] === "je ne connais pas du tout"){
+                cms["Alfresco"]++;
+            }
+            if(data[i]['CMS [Drupal]'] === "je ne connais pas du tout"){
+                cms["Drupal"]++;
+            }
+            if(data[i]['CMS [Joomla]'] === "je ne connais pas du tout"){
+                cms["Joomla"]++;
+            }
+            if(data[i]['CMS [LMS]'] === "je ne connais pas du tout"){
+                cms["LMS"]++;
+            }
+            if(data[i]['CMS [Moodle]'] === "je ne connais pas du tout"){
+                cms["Moodle"]++;
+            }
+            if(data[i]['CMS [Omeka S]'] === "je ne connais pas du tout"){
+                cms["Omeka S"]++;
+            }
+            if(data[i]['CMS [Omeka classique]'] === "je ne connais pas du tout"){
+                cms["Omeka classique"]++;
+            }
+            if(data[i]['CMS [Presta shop]'] === "je ne connais pas du tout"){
+                cms["Presta shop"]++;
+            }
+            if(data[i]['CMS [SPIP]'] === "je ne connais pas du tout"){
+                cms["SPIP"]++;
+            }
+            if(data[i]['CMS [Sharepoint]'] === "je ne connais pas du tout"){
+                cms["Sharepoint"]++;
+            }
+            if(data[i]['CMS [Wordpress]'] === "je ne connais pas du tout"){
+                cms["Wordpress"]++;
+            }
 
 
-		}
-		drawGraph(parcours,'#parcours')
-		drawGraph(ordinateurs,'#ordinateurs')
-		drawGraph(connexion,'#connexion')
-		drawGraph(compte,'#compte')
-		drawGraph(objectifs,'#objectifs')
-		drawGraph(formation,'#formation')
-		drawGraph(competences,'#competences')
-		drawGraph(outils,'#outils')
-		drawGraph(langage,'#langage')
-		drawGraph(langue,'#langue')
-		drawGraph(cms,'#cms')
-		drawGraph(rs,'#rs')
+        }
 
-	}
+        drawGraph(parcours,'#parcours',450,450,230,-100)
+        drawGraph(ordinateurs,'#ordinateurs',450,450,230,-100)
+        drawGraph(connexion,'#connexion',450,450,230,-100)
+        drawGraph(cms,'#cms',450,450,230,-100)
+        drawGraph(compte,'#compte',450,450,230,-100)
+        drawGraph(objectifs,'#objectifs',450,450,230,-100)
+        drawGraph(formation,'#formation',450,450,230,-100)
+        drawGraph(competences,'#competences',450,450,230,-100)
+        drawGraph(outils,'#outils',450,450,230,-100)
+        drawGraph(langage,'#langage',450,450,230,-100)
+        drawGraph(langue,'#langue',450,450,230,-100)
+        drawGraph(rs,'#rs',450,450,230,-100)
+        //drawGraph(besoins,'#besoins')
+
+    }
+    function drawGraph(info,iddiv,sizew, sizeh,poslegplus,poslegmoins) {
+
+        var width = sizew
+        var height = sizeh
+        var margin = 40
+        var radius = Math.min(width, height) / 2 - margin
+        var mysvg = d3.select(iddiv)
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", "0 0 550 550")
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        var color = d3.scaleOrdinal()
+            .domain(info)
+            .range(d3.schemeSet2);
+        var pie = d3.pie()
+            .value(function(d) {return d.value; })
+        var data_ready = pie(d3.entries(info))
+        var arcGenerator = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius);
+        mysvg.selectAll('mySlices')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            .attr('d', arcGenerator)
+            .attr('fill', function(d){ return(color(d.data.key)) })
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("opacity", 0.7)
+            .on('mouseover', function (d, i) {
+                d3.select(this).transition()
+                    .duration('50')
+                    .attr('opacity', '.85');
+                div.transition()
+                    .duration(50)
+                    .style("opacity", 1);
+                div.html(d.value)
+                    .style("left", (d3.event.pageX + 10) + "px")
+                    .style("top", (d3.event.pageY - 15) + "px");
+            })
+            .on('mouseout', function (d, i) {
+                d3.select(this).transition()
+                    .duration('50')
+                    .attr('opacity', '1');
+                div.transition()
+                    .duration('50')
+                    .style("opacity", 0);
+            });
+        mysvg.selectAll('mySlices')
+            .data(data_ready)
+            .enter()
+            .append('text')
+            .text(function(d){ return d.data.value})
+            .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+            .style("text-anchor", "middle")
+            .style("font-size", 17);
+
+        var legendRectSize = 13;
+        var legendSpacing = 7;
+
+        //add legend
+        var legendHolder = mysvg.append('g')
+            // translate the holder to the right side of the graph
+            .attr('transform', "translate(" + poslegplus + "," + poslegmoins + ")")
+            .attr('class','legendHolder')
+
+        var legend = legendHolder.selectAll('.legend') //the legend and placement
+            .data(color.domain())
+            .enter()
+            .append('g')
+            .attr('class', 'circle-legend')
+            .attr('transform', function (d, i) {
+                var height = legendRectSize + legendSpacing;
+                var offset = height * color.domain().length / 2;
+                var horz = -2 * legendRectSize - 13;
+                var vert = i * height - offset;
+                return 'translate(' + horz + ',' + vert + ')';
+            });
+
+        legend.append('circle') //keys
+            .style('fill', color)
+            .style('stroke', color)
+            .attr('cx', 0)
+            .attr('cy', 0)
+            .attr('r', '.5rem');legend.append('text') //labels
+            .attr('x', legendRectSize + legendSpacing)
+            .attr('y', legendRectSize - legendSpacing)
+            .text(function (d) {
+                return d;
+            });
 
 
-
-
-	function drawGraph(info,iddiv) {
-		var width = 450
-		height = 450
-		margin = 40
-		var radius = Math.min(width, height) / 2 - margin
-		var svg = d3.select(iddiv)
-				.append("svg")
-				.attr("width", width)
-				.attr("height", height)
-				.attr("viewBox", "0 0 450 450")
-				.append("g")
-				.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-		var color = d3.scaleOrdinal()
-				.domain(info)
-				.range(d3.schemeSet2);
-		var pie = d3.pie()
-				.value(function(d) {return d.value; })
-		var data_ready = pie(d3.entries(info))
-		var arcGenerator = d3.arc()
-				.innerRadius(0)
-				.outerRadius(radius);
-		svg
-				.selectAll('mySlices')
-				.data(data_ready)
-				.enter()
-				.append('path')
-				.attr('d', arcGenerator)
-				.attr('fill', function(d){ return(color(d.data.key)) })
-				.attr("stroke", "black")
-				.style("stroke-width", "2px")
-				.style("opacity", 0.7)
-				.on('mouseover', function (d, i) {
-					d3.select(this).transition()
-							.duration('50')
-							.attr('opacity', '.85');
-					div.transition()
-							.duration(50)
-							.style("opacity", 1);
-					div.html(d.value)
-							.style("left", (d3.event.pageX + 10) + "px")
-							.style("top", (d3.event.pageY - 15) + "px");
-				})
-				.on('mouseout', function (d, i) {
-					d3.select(this).transition()
-							.duration('50')
-							.attr('opacity', '1');
-					div.transition()
-							.duration('50')
-							.style("opacity", 0);
-				});
-		svg
-				.selectAll('mySlices')
-				.data(data_ready)
-				.enter()
-				.append('text')
-				.text(function(d){ return d.data.key})
-				.attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-				.style("text-anchor", "middle")
-				.style("font-size", 17);
-	}
-
-
-	$('button[data-toggle="modal"]').click(function(){
-		$($(this).data('target')).attr('btn-id', $(this).attr('id'));
-	});
-
+    }
 
 </script>
 </body>
 
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 
 </html>
