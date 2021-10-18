@@ -4,7 +4,7 @@
 ## Projet realisé par ACHAT asalas  ##
 ceci est mon premier fichier markdown dans ___lequel je vais décrire___ mon projet avec des balises markdown
 
-## technos Utilisé  ##
+## technos Utilisées  ##
 * Jquery.
 * Bootstrap.
 * vanilla CSS
