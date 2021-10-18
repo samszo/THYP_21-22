@@ -9,6 +9,8 @@ ceci est mon premier fichier markdown dans ___lequel je vais décrire___ mon pro
 * Bootstrap.
 * vanilla CSS
 * vanilla HTML
-* D3js
+* D3js.
+
+
 [![texte de remplacement](https://media-exp1.licdn.com/dms/image/C510BAQFSm_rB6v2rEA/company-logo_200_200/0/1519897204965?e=1642636800&v=beta&t=JLBFqs5z4ChatxqOGTsycvid36hTwx7_Haagve7KFjo)](https://media-exp1.licdn.com/dms/image/C510BAQFSm_rB6v2rEA/company-logo_200_200/0/1519897204965?e=1642636800&v=beta&t=JLBFqs5z4ChatxqOGTsycvid36hTwx7_Haagve7KFjo)[![texte de remplacement](https://media-exp1.licdn.com/dms/image/C510BAQFSm_rB6v2rEA/company-logo_200_200/0/1519897204965?e=1642636800&v=beta&t=JLBFqs5z4ChatxqOGTsycvid36hTwx7_Haagve7KFjo)](https://media-exp1.licdn.com/dms/image/C510BAQFSm_rB6v2rEA/company-logo_200_200/0/1519897204965?e=1642636800&v=beta&t=JLBFqs5z4ChatxqOGTsycvid36hTwx7_Haagve7KFjo)[![texte de remplacement](https://media-exp1.licdn.com/dms/image/C510BAQFSm_rB6v2rEA/company-logo_200_200/0/1519897204965?e=1642636800&v=beta&t=JLBFqs5z4ChatxqOGTsycvid36hTwx7_Haagve7KFjo)](https://media-exp1.licdn.com/dms/image/C510BAQFSm_rB6v2rEA/company-logo_200_200/0/1519897204965?e=1642636800&v=beta&t=JLBFqs5z4ChatxqOGTsycvid36hTwx7_Haagve7KFjo)
 >>>>>>> e5aabc5ca36e17037a3e6f9e39730bc28eaabb59
