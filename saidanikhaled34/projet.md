@@ -9,17 +9,13 @@
 - [Ressources-employées](#Ressources-employées)
 
 ## Titre du projet
-
+site web E-commerce
 
 ## Problème à résoudre
-
+La lenteur des temps de chargement, les mauvaises politiques de retour, l'absence de garantie client ou les exigences absurdes sont parmi les problèmes qui rendent les achats en ligne difficiles.
 
 ## Solution proposée
-
-
-
-## Impact sur la productivité
-
+Une solution e-commerce est une application web permettant de créer un site e-commerce. Elle sert à créer des pages, un catalogue produit, mettre en place des modes de livraison et de paiement, gérer des commandes : tout ce qui permet à un site e-commerce de fonctionner !
 
 
 ## Avantages
