@@ -1,13 +1,6 @@
 # Prodjet de Saidani khaled
 ## Table des matières
 
-- [Titre du projet:](#Titre-du-projet)
-- [Problème à résoudre ](#Problème-à-résoudre)
-- [Solution proposée](#Solution-proposée)
-- [Impact sur la productivité](#Impact-sur-la-productivité)
-- [Avantages](#Avantages)
-- [Public cible](#Public-cible)
-- [Ressources-employées](#Ressources-employées)
 
 ## Titre du projet
 site web E-commerce
