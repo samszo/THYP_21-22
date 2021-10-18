@@ -10,64 +10,63 @@
     </head>
     <body>
         <div class="jumbotron">
-            <h1 class="display-3">Master THYP</h1>
+            <h1 class="display-3">Master 2 THYP</h1>
             <h2>Promotion  2021 - 2022</h2>
             <hr class="my-4">
-
+          
             <ul class="nav nav-tabs" id="tabFacet" role="tablist">
             </ul>
             <div class="tab-content" id="tabFacetContent">
             </div>
-
+          
           </div>
            <div class="container">
           <div class="row" id="etuCards" >
-
+        
         </div>
          </div>
         <p></p>
-
+        
+    <div id="listeEtus" class="row"></div>
+    
 
     <script>
         let html = ""
-        const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv'
-        //const url = 'response.csv';
-        var body=d3.select("body");
-        /*d3.csv(url, function(data) {
-            for (var i = 0; i < data.length; i++) {
-                console.log(data[i]);
-            }
-        });*/
-                d3.csv(url,function(data){
-            var para=body.selectAll("p").data(data);
-            para.enter()
-                .append("p")
-                .text(function(d,i){
-                    //var elem = document.getElementById('etuCards');
+        const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTM42Rbon532i3N3aW25ZpkoKtsMN-u6C7ycSj6A3DP2QCO89n3OMkseL--aI9a9s3ouwQJsVk6cOFw/pub?gid=513110937&single=true&output=csv'
+      
+      d3.csv(urlCSV, (dataCSV) => {
+            console.log(dataCSV); 
+             //création d'une div par étudiant
+            let divEtus = d3.select('#listeEtus').selectAll('div').data(dataCSV).enter().append('div')
+                /*.attr('id',(d,i)=>{
+                    d.idDiv = 'etu_'+i+'_'+d['N° étudiant'];
+                    return d.idDiv;
+                });*/
+                .attr('style','width : 18rem;')
+                .attr('class','card col-sm-4')
 
-                    /*div.innerHTML += '<div class="card" style="width: 18rem;">';
-                    div.innerHTML +='<div class="card-body">';
-                    div.innerHTML +='<h5 class="card-title">Card title</h5>';
-                    div.innerHTML +='<p class="card-text">Some quick example .</p>';
-                  div.innerHTML += '<button class="btn btn-primary">bouton</button>';   
-                  div.innerHTML +='</div>';
-                div.innerHTML +='</div>';*/
+                divEtus.append('img').attr('class','card-img-top')
+                .attr('style','height : 200px;')
+                .attr('alt','Card image cap')
+                .attr('src',d=>{
+                    return d['Votre photo'];
+                });
 
-                        /*div.innerHTML +='<div class="card">';
-                      div.innerHTML +='<div class="card-body">';
-                        div.innerHTML +='Prenom : '+data[i]["Votre prénom"];
-                      div.innerHTML +='</div>';
-                    div.innerHTML +='</div>';*/
+                let bodyEtus =  divEtus.append('div').attr('class','card-body')
+                
+                bodyEtus.append('h5').attr('class','card-title')
+                .text(d => {
+                    return d['Votre nom'] + " " +  d['Votre prénom']
+                });
 
+                bodyEtus.append('a').attr('class','btn btn-primary')
+                .attr('href','#')
+                .text("consulter les Competences")
 
-
-
-            return (" N° : "+i+" nom : "+data[i]["Votre prénom"]+" Mail : "+data[i]["Votre mail"]+" Date : "+" Date :  "+d.Horodateur+"")
-                    });
-                    return });
-
-
-
+        });
+        
+                
+            
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
