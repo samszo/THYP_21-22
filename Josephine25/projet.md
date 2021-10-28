@@ -3,7 +3,7 @@
 Le projet **Cv Generator** est une application web qui conssite à generer de façon automatique les CV des différents utilisateurs. Le procédé de génération est simple. Il suffira juste de rentrer les données et l' application  se chargera de générer un CV. Il y aura des modèles, c'est à dire des designs de CV prédéfini. Initialement le projet en comportera 3.
 
 #### Schema du processus
-_NB : pour les utilisateur qui ont déjà un compte, le processus débute au point 03 . _
+_NB : pour les utilisateur qui ont déjà un compte, le processus débute au point 03 ._
 ![Etape1](https://github.com/josephine25/images/blob/main/images/Cr%C3%A9ation%20de%20compte.png)
 ![Etape2](https://github.com/josephine25/images/blob/main/images/Cr%C3%A9ation%20de%20compte%20(1).png)
 ![Etape3](https://github.com/josephine25/images/blob/main/images/Cr%C3%A9ation%20de%20compte%20(2).png)
