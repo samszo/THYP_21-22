@@ -381,6 +381,12 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
                     let url = 'https://'+d['Votre compte GitHub']+'.github.io/THYP_21-22/ex1';
                     window.open(url, '_blank');
                     });
+            cardBody.append('h6').text("omk")
+                .style('cursor','pointer')
+                .on("click",(d)=>{
+                    let url = 'https://'+d['Votre compte GitHub']+'.github.io/THYP_21-22/omk/index.html';
+                    window.open(url, '_blank');
+                    });
 
             //construction du layout pour les graphiques
             html = '<div class="container"><div class="row">';
