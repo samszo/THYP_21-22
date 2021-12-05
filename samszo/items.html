@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Examen THYP du 7 décembre 2020</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://use.fontawesome.com/2ddc4a0f9c.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h4 style="text-align: center; font-weight: bold">News</h4>
+    <div class="row" id="items">
+    </div>
+</div>
+
+
+</div>
+<script>
+    url = "https://polemika.univ-paris8.fr/omk/api/items?item_set_id=2";
+    getData(url);
+
+    function getData(url) {
+        d3.queue()
+            .defer(d3.json, url)
+            .awaitAll(function (error, results) {
+                if (error) throw error;
+                showItems(results[0]);
+            });
+    }
+
+
+    function showItems(data) {
+
+        let cards = d3.select('#items').selectAll(".col-4").data(data).enter()
+            .append('div').attr('class', 'col-sm-6 mb-12').style('margin-bottom', '13px')
+            .append("div").attr('class', 'card');
+
+        let cardBody = cards.append('div').attr('class', 'card-body');
+        cardBody
+            .append('h5').text((d) => d["o:title"]).style('color','red')
+            .append('h3').text((d) =>  "identifiants :" + d["o:id"]) .style('color', 'black')
+            
+            .append('img')
+            .attr('id', (d, i) => 'imgCard' + d["o:id"])
+            .attr('class', 'center card-img-top')
+            .attr('src', (d) => {
+                d3.json(d["o:media"][0]["@id"], function (error, results) {
+                    if (error) throw error;
+                    d3.select("#" + "imgCard" + d["o:id"]).attr("src", results["o:source"]);
+                });
+            });
+
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
