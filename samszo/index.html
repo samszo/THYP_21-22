@@ -387,6 +387,24 @@ var dataPhoto, dataForm, dataFacet=[], dataDoublons={}
                     let url = 'https://'+d['Votre compte GitHub']+'.github.io/THYP_21-22/omk/index.html';
                     window.open(url, '_blank');
                     });
+            cardBody.append('h6').text("onto.ttl")
+                .style('cursor','pointer')
+                .on("click",(d)=>{
+                    let url = 'https://github.com/'+d['Votre compte GitHub']+'/THYP_21-22//onto/onto.ttl';
+                    window.open(url, '_blank');
+                    });	    
+            cardBody.append('h6').text("projet")
+                .style('cursor','pointer')
+                .on("click",(d)=>{
+                    let url = 'https://github.com/'+d['Votre compte GitHub']+'/THYP_21-22/projet.md';
+                    window.open(url, '_blank');
+                    });
+            cardBody.append('h6').text("RS")
+                .style('cursor','pointer')
+                .on("click",(d)=>{
+                    let url = 'https://github.com/'+d['Votre compte GitHub']+'/THYP_21-22/rs';
+                    window.open(url, '_blank');
+                    });
 
             //construction du layout pour les graphiques
             html = '<div class="container"><div class="row">';
